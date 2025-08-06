@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Commerce: A Partner's Blueprint to the Future</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Infographic Generation Plan -->
+    <!-- Palette Name: Stripe Inspired -->
+    <!-- No SVG or Mermaid JS were used in this document. All diagrams are built with HTML/CSS and all charts with the Canvas-based Chart.js library. -->
+    <!-- Narrative & Structure Plan: -->
+    <!-- 1. Hero: Introduce Agentic Commerce as a paradigm shift. -->
+    <!-- 2. The 6-Layer Architecture: Visualize the new stack using a structured HTML/CSS flow diagram. -->
+    <!-- 3. Stripe vs. Partner Role Delineation: Use a stacked bar chart to show the responsibility split across the 6 layers. -->
+    <!-- 4. Interactive Component Matrix: A new detailed, visual breakdown of all components, roles, and opportunities. -->
+    <!-- 5. The Partner "White Space" Opportunity: A horizontal bar chart to rank the most lucrative service areas for GSIs. -->
+    <!-- 6. Stripe's Foundational Role: Use donut charts and stat cards to showcase Stripe's key products (Issuing, Billing, Radar). -->
+    <!-- 7. The Sell-Side Gold Rush: A process flow diagram (HTML/CSS) for the "Merchant AI-Readiness" service offering. -->
+    <!-- 8. Future View - The Protocol Landscape: A grid of cards explaining ACP, A2A, MCP, and KYA. -->
+    <!-- Visualization Selection Plan: -->
+    <!-- - Architecture Diagram: Goal=Organize, Method=HTML/CSS with Tailwind. Justification: Clearly shows the 6 layers and their relationship without SVG. -->
+    <!-- - Role Delineation Chart: Goal=Compare/Composition, Method=Chart.js Stacked Bar. Justification: Best way to show a part-to-whole relationship (Stripe vs. Partner) for each category (layer). -->
+    <!-- - Component Matrix Visualization: Goal=Organize/Compare, Method=HTML/CSS Cards. Justification: Visually breaks down the detailed table into digestible, color-coded cards for clarity. -->
+    <!-- - Opportunity Ranking Chart: Goal=Compare/Rank, Method=Chart.js Horizontal Bar. Justification: Effectively ranks the GSI opportunities based on the source text's emphasis. -->
+    <!-- - Stripe's Role: Goal=Inform, Method=Chart.js Donut Charts & Stat Cards. Justification: Donut charts are excellent for showing the composition of Stripe's offering, and stat cards provide quick, impactful information. -->
+    <!-- - Sell-Side Process Flow: Goal=Organize, Method=HTML/CSS with Tailwind. Justification: A simple, clean way to show a linear process for the merchant modernization service. -->
+    <!-- - Protocol Cards: Goal=Organize, Method=HTML/CSS Cards. Justification: Presents distinct concepts in a clear, digestible, and visually organized manner. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F6F9FC;
+            color: #425466;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 350px;
+            max-height: 400px;
+            width: 100%;
+            max-width: 600px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+                max-height: 450px;
+            }
+        }
+        .flow-line-h {
+            flex-grow: 1;
+            height: 2px;
+            background-image: linear-gradient(to right, #635BFF, #8B65FF);
+        }
+        .flow-line-v {
+            height: 3rem;
+            width: 2px;
+            background-image: linear-gradient(to bottom, #635BFF, #8B65FF);
+            margin: 1rem auto;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #635BFF 0%, #8B65FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        .critical-opportunity {
+            background-color: #FFF3E0;
+            border-left-color: #F1A444;
+            font-weight: 500;
+            color: #795548;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- Section 1: Hero -->
+        <header class="text-center py-16 md:py-24">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 text-slate-900">The <span class="gradient-text">Agentic Commerce</span> Revolution</h1>
+            <p class="max-w-3xl mx-auto text-lg md:text-xl text-slate-600">
+                A new paradigm is emerging. Autonomous AI agents are collapsing the e-commerce funnel, creating unprecedented opportunities. This is the architectural blueprint for Global System Integrators (GSIs) to navigate and lead this transformation with Stripe.
+            </p>
+        </header>
+
+        <main class="mt-12 space-y-24">
+            <!-- Section 2: 6-Layer Architecture -->
+            <section>
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">The New 6-Layer Reference Architecture</h2>
+                    <p class="text-center text-slate-600 max-w-2xl mx-auto mt-4 text-lg">Agentic commerce requires a new way of thinking. The traditional monolithic stack is replaced by a distributed, multi-system model. Understanding these six layers is the first step to building the future.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-[#635BFF]">
+                        <div class="flex items-center justify-center w-12 h-12 bg-indigo-100 rounded-full mb-4"><span class="text-2xl">👤</span></div>
+                        <h3 class="font-bold text-lg text-slate-900">1. User Interaction Layer</h3>
+                        <p class="text-sm text-slate-500 mt-2">The "Front Door." Where human intent is captured via text, voice, or image.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-[#32AFFF]">
+                        <div class="flex items-center justify-center w-12 h-12 bg-sky-100 rounded-full mb-4"><span class="text-2xl">🧠</span></div>
+                        <h3 class="font-bold text-lg text-slate-900">2. Agent Core</h3>
+                        <p class="text-sm text-slate-500 mt-2">The "Brain." The LLM and reasoning engine that plans and makes decisions.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-[#F1A444]">
+                        <div class="flex items-center justify-center w-12 h-12 bg-amber-100 rounded-full mb-4"><span class="text-2xl">🛒</span></div>
+                        <h3 class="font-bold text-lg text-slate-900">3. Buy-Side Execution</h3>
+                        <p class="text-sm text-slate-500 mt-2">The "Shopping Assistant." Tools the agent uses to search, compare, and buy.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-[#00D924]">
+                         <div class="flex items-center justify-center w-12 h-12 bg-green-100 rounded-full mb-4"><span class="text-2xl">🏪</span></div>
+                        <h3 class="font-bold text-lg text-slate-900">4. Sell-Side Enablement</h3>
+                        <p class="text-sm text-slate-500 mt-2">The "Merchant API." How merchants expose products, inventory, and orders.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-[#635BFF]">
+                         <div class="flex items-center justify-center w-12 h-12 bg-indigo-100 rounded-full mb-4"><span class="text-2xl">💳</span></div>
+                        <h3 class="font-bold text-lg text-slate-900">5. Financial Transaction</h3>
+                        <p class="text-sm text-slate-500 mt-2">The "Commerce Engine." Secure, reliable money movement. Stripe's core domain.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-slate-400">
+                         <div class="flex items-center justify-center w-12 h-12 bg-slate-100 rounded-full mb-4"><span class="text-2xl">🛡️</span></div>
+                        <h3 class="font-bold text-lg text-slate-900">6. Trust & Governance</h3>
+                        <p class="text-sm text-slate-500 mt-2">The "Digital Passport." Manages identity, permissions, and compliance.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Stripe vs Partner Role -->
+            <section class="bg-white rounded-xl shadow-sm p-6 md:p-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-4 text-slate-900 tracking-tight">Delineating the Value Chain: Stripe vs. Partner</h2>
+                        <p class="text-slate-600 mb-6 text-lg">The agentic stack creates a clear separation of concerns. Stripe provides the robust, scalable financial engine. Partners build everything else. This chart visualizes the implementation ownership across the architecture, highlighting the massive "white space" opportunity for GSIs.</p>
+                        <div class="space-y-3">
+                            <div class="flex items-center"><div class="w-4 h-4 rounded-sm mr-3 flex-shrink-0" style="background-color: #635BFF;"></div><span class="font-medium text-slate-700">Stripe's Role (Out-of-the-Box)</span></div>
+                            <div class="flex items-center"><div class="w-4 h-4 rounded-sm mr-3 flex-shrink-0" style="background-color: #F1A444;"></div><span class="font-medium text-slate-700">Partner Opportunity (Implementation & Integration)</span></div>
+                        </div>
+                    </div>
+                    <div class="chart-container h-96 md:h-[500px]">
+                        <canvas id="roleDelineationChart"></canvas>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- NEW Section: Detailed Component Matrix -->
+            <section>
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Component Deep Dive</h2>
+                     <p class="text-center text-slate-600 max-w-2xl mx-auto mt-4 text-lg">Explore the granular components within each architectural layer to understand the specific roles and opportunities for Stripe and GSI Partners.</p>
+                </div>
+                <div class="space-y-16">
+                    <!-- Layer -->
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-bold text-slate-800 border-b-2 border-indigo-200 pb-2">1. User Interaction Layer</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <h4 class="font-bold text-lg text-slate-900">Conversational UI/UX</h4>
+                                <p class="mt-1 text-sm text-slate-500">The interface for user interaction (text, voice, image).</p>
+                                <div class="mt-4 space-y-3">
+                                    <div class="p-3 rounded-md bg-indigo-50 border-l-4 border-indigo-400"><p class="text-sm"><strong class="text-indigo-800">Stripe's Role:</strong> Provides `Stripe Elements` for embedding secure payment fields within any UI.</p></div>
+                                    <div class="p-3 rounded-md bg-amber-50 border-l-4 border-amber-400"><p class="text-sm"><strong class="text-amber-800">Partner Opportunity:</strong> Design and build the entire front-end user experience. Implement Natural Language Processing (NLP) and intent recognition.</p></div>
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <h4 class="font-bold text-lg text-slate-900">User Intent Modeling</h4>
+                                <p class="mt-1 text-sm text-slate-500">Translating a user's ambiguous request into a structured plan.</p>
+                                <div class="mt-4 space-y-3">
+                                    <div class="p-3 rounded-md bg-indigo-50 border-l-4 border-indigo-400"><p class="text-sm"><strong class="text-indigo-800">Stripe's Role:</strong> N/A</p></div>
+                                    <div class="p-3 rounded-md critical-opportunity"><p class="text-sm"><strong>Partner Opportunity:</strong> Core GSI consulting and AI development role. Define user journey maps and prompt engineering strategies.</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Layer -->
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-bold text-slate-800 border-b-2 border-sky-200 pb-2">2. Agent Core</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <h4 class="font-bold text-lg text-slate-900">LLM & Reasoning Engine</h4>
+                                <p class="mt-1 text-sm text-slate-500">The "brain" that processes user intent and plans tasks.</p>
+                                <div class="mt-4 space-y-3">
+                                    <div class="p-3 rounded-md bg-indigo-50 border-l-4 border-indigo-400"><p class="text-sm"><strong class="text-indigo-800">Stripe's Role:</strong> Model-agnostic. Provides an agent toolkit that works with any LLM that supports function calling (MCP).</p></div>
+                                    <div class="p-3 rounded-md critical-opportunity"><p class="text-sm"><strong>Partner Opportunity:</strong> Foundational GSI role. Select, fine-tune, and host LLMs. Design and implement reasoning logic.</p></div>
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <h4 class="font-bold text-lg text-slate-900">Agent Orchestration</h4>
+                                <p class="mt-1 text-sm text-slate-500">Managing workflows between multiple specialized agents.</p>
+                                <div class="mt-4 space-y-3">
+                                    <div class="p-3 rounded-md bg-indigo-50 border-l-4 border-indigo-400"><p class="text-sm"><strong class="text-indigo-800">Stripe's Role:</strong> N/A. Toolkit plugs into orchestration frameworks.</p></div>
+                                    <div class="p-3 rounded-md critical-opportunity"><p class="text-sm"><strong>Partner Opportunity:</strong> Select and implement frameworks like LangGraph or CrewAI. Design multi-agent architectures.</p></div>
+                                </div>
+                            </div>
+                             <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <h4 class="font-bold text-lg text-slate-900">Memory & State Management</h4>
+                                <p class="mt-1 text-sm text-slate-500">Maintaining context and retaining user preferences.</p>
+                                <div class="mt-4 space-y-3">
+                                    <div class="p-3 rounded-md bg-indigo-50 border-l-4 border-indigo-400"><p class="text-sm"><strong class="text-indigo-800">Stripe's Role:</strong> `Link` securely stores payment methods, shipping info, and email for recall.</p></div>
+                                    <div class="p-3 rounded-md bg-amber-50 border-l-4 border-amber-400"><p class="text-sm"><strong class="text-amber-800">Partner Opportunity:</strong> Implement agent memory modules. Integrate with vector databases and user profile stores.</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Layer -->
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-bold text-slate-800 border-b-2 border-amber-200 pb-2">3. Buy-Side Execution Layer</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <h4 class="font-bold text-lg text-slate-900">Product Discovery & Search</h4>
+                                <p class="mt-1 text-sm text-slate-500">Agent's ability to search across multiple merchants.</p>
+                                <div class="mt-4 space-y-3">
+                                     <div class="p-3 rounded-md bg-indigo-50 border-l-4 border-indigo-400"><p class="text-sm"><strong class="text-indigo-800">Stripe's Role:</strong> N/A</p></div>
+                                    <div class="p-3 rounded-md critical-opportunity"><p class="text-sm"><strong>Partner Opportunity:</strong> Implement web crawling, database queries, and API calls. Develop "AI SEO" (AEO) strategies.</p></div>
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <h4 class="font-bold text-lg text-slate-900">Comparison & Recommendation</h4>
+                                <p class="mt-1 text-sm text-slate-500">Analyzing products against user criteria to recommend.</p>
+                                <div class="mt-4 space-y-3">
+                                     <div class="p-3 rounded-md bg-indigo-50 border-l-4 border-indigo-400"><p class="text-sm"><strong class="text-indigo-800">Stripe's Role:</strong> Can enhance recommendations if a merchant shares data via ACP concept.</p></div>
+                                    <div class="p-3 rounded-md critical-opportunity"><p class="text-sm"><strong>Partner Opportunity:</strong> Develop complex comparison logic, scoring algorithms, and personalization engines.</p></div>
+                                </div>
+                            </div>
+                             <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <h4 class="font-bold text-lg text-slate-900">Programmatic Purchase</h4>
+                                <p class="mt-1 text-sm text-slate-500">The final act of making the purchase from a merchant site.</p>
+                                <div class="mt-4 space-y-3">
+                                    <div class="p-3 rounded-md bg-indigo-50 border-l-4 border-indigo-400"><p class="text-sm"><strong class="text-indigo-800">Stripe's Role:</strong> `PurchaseIntent API` (preview) and `Issuing` for single-use virtual cards.</p></div>
+                                    <div class="p-3 rounded-md bg-amber-50 border-l-4 border-amber-400"><p class="text-sm"><strong class="text-amber-800">Partner Opportunity:</strong> Implement agent logic to call Stripe APIs, handle variant selection, fulfillment choices, and errors.</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Layer -->
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-bold text-slate-800 border-b-2 border-green-200 pb-2">4. Sell-Side Enablement Layer</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                             <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <h4 class="font-bold text-lg text-slate-900">Product, Inventory & Order APIs</h4>
+                                <p class="mt-1 text-sm text-slate-500">Allows agents to query products, check stock, and place orders.</p>
+                                <div class="mt-4 space-y-3">
+                                    <div class="p-3 rounded-md bg-indigo-50 border-l-4 border-indigo-400"><p class="text-sm"><strong class="text-indigo-800">Stripe's Role:</strong> Proposing "Agentic Commerce Protocol" (ACP) as an open spec for these APIs.</p></div>
+                                    <div class="p-3 rounded-md critical-opportunity"><p class="text-sm"><strong>Partner Opportunity:</strong> CRITICAL GSI SERVICE. Design, build, and deploy these APIs for merchants. Modernize legacy PIM, IMS, and OMS systems.</p></div>
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <h4 class="font-bold text-lg text-slate-900">Promotions & Pricing API</h4>
+                                <p class="mt-1 text-sm text-slate-500">Allows agents to discover discounts or negotiate pricing.</p>
+                                <div class="mt-4 space-y-3">
+                                    <div class="p-3 rounded-md bg-indigo-50 border-l-4 border-indigo-400"><p class="text-sm"><strong class="text-indigo-800">Stripe's Role:</strong> ACP concept includes endpoints for promotions and negotiation.</p></div>
+                                    <div class="p-3 rounded-md bg-amber-50 border-l-4 border-amber-400"><p class="text-sm"><strong class="text-amber-800">Partner Opportunity:</strong> Build dynamic pricing and promotion logic into the merchant's backend and expose it via API.</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Partner Opportunity -->
+            <section>
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Ranking the "White Space": Where GSIs Create Value</h2>
+                    <p class="text-center text-slate-600 max-w-2xl mx-auto mt-4 text-lg">Not all opportunities are created equal. Based on market needs and system complexity, the most critical—and lucrative—service areas for partners are clear. Modernizing the sell-side and building the agent's core intelligence represent the largest immediate revenue streams.</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm p-6 md:p-10">
+                     <div class="chart-container h-96 md:h-[500px]">
+                        <canvas id="opportunityChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+             <!-- Section 5: Stripe's Role -->
+            <section>
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Stripe's Foundational Role: The Commerce Engine</h2>
+                    <p class="text-center text-slate-600 max-w-2xl mx-auto mt-4 text-lg">Stripe provides the purpose-built infrastructure for programmatic commerce, solving the core financial challenges for any agentic platform. This allows partners to build on a trusted, scalable foundation.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-xl shadow-sm p-8 text-center">
+                        <h3 class="font-bold text-xl mb-2 text-slate-900">Enable Spending</h3>
+                        <p class="text-slate-600 text-base mb-6">Securely empower agents to purchase goods and services with granular controls.</p>
+                        <div class="chart-container !h-56 !max-h-56"><canvas id="spendChart"></canvas></div>
+                        <p class="mt-6 font-semibold text-slate-800">Key Product: Stripe Issuing</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm p-8 text-center">
+                        <h3 class="font-bold text-xl mb-2 text-slate-900">Monetize Agents</h3>
+                        <p class="text-slate-600 text-base mb-6">Build viable business models by charging for agent usage and services.</p>
+                        <div class="chart-container !h-56 !max-h-56"><canvas id="monetizeChart"></canvas></div>
+                         <p class="mt-6 font-semibold text-slate-800">Key Product: Stripe Billing</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm p-8 text-center">
+                        <h3 class="font-bold text-xl mb-2 text-slate-900">Ensure Trust</h3>
+                        <p class="text-slate-600 text-base mb-6">Protect against fraud and manage risk in a new, automated transaction landscape.</p>
+                        <div class="chart-container !h-56 !max-h-56"><canvas id="trustChart"></canvas></div>
+                         <p class="mt-6 font-semibold text-slate-800">Key Product: Radar for Fraud Teams</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: The Sell-Side Gold Rush -->
+            <section class="bg-white rounded-xl shadow-sm p-6 md:p-10">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">The Sell-Side Gold Rush: Merchant AI-Readiness</h2>
+                    <p class="text-slate-600 max-w-3xl mx-auto mt-4 text-lg">The single largest opportunity for GSIs is preparing merchants for the agentic era. Agents can't buy from stores that are "dark" to them. This modernization service is a massive digital transformation project.</p>
+                </div>
+                <div class="flex flex-col md:flex-row justify-center items-center text-center">
+                    <div class="flex flex-col items-center p-4">
+                        <div class="bg-gradient-to-br from-[#635BFF] to-[#8B65FF] text-white rounded-full w-20 h-20 flex items-center justify-center text-4xl font-bold shadow-lg">1</div>
+                        <h3 class="font-bold mt-6 text-xl text-slate-900">Assess</h3>
+                        <p class="text-base text-slate-500 max-w-xs mt-2">Diagnose structural gaps in product data, inventory, and order systems.</p>
+                    </div>
+                    <div class="flow-line-h hidden md:block"></div>
+                    <div class="flow-line-v md:hidden"></div>
+                    <div class="flex flex-col items-center p-4">
+                         <div class="bg-gradient-to-br from-[#635BFF] to-[#8B65FF] text-white rounded-full w-20 h-20 flex items-center justify-center text-4xl font-bold shadow-lg">2</div>
+                        <h3 class="font-bold mt-6 text-xl text-slate-900">Modernize</h3>
+                        <p class="text-base text-slate-500 max-w-xs mt-2">Upgrade legacy PIM, IMS, and OMS to be cloud-native and API-driven.</p>
+                    </div>
+                    <div class="flow-line-h hidden md:block"></div>
+                    <div class="flow-line-v md:hidden"></div>
+                    <div class="flex flex-col items-center p-4">
+                        <div class="bg-gradient-to-br from-[#635BFF] to-[#8B65FF] text-white rounded-full w-20 h-20 flex items-center justify-center text-4xl font-bold shadow-lg">3</div>
+                        <h3 class="font-bold mt-6 text-xl text-slate-900">Build & Expose</h3>
+                        <p class="text-base text-slate-500 max-w-xs mt-2">Construct and deploy secure, robust, agent-facing APIs (e.g., via ACP).</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section 7: Protocol Landscape -->
+            <section>
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">The Future is Interoperable: The Protocol Landscape</h2>
+                    <p class="text-center text-slate-600 max-w-2xl mx-auto mt-4 text-lg">A mature agentic economy will be built on open standards, not walled gardens. Understanding these complementary protocols is key to building future-proof solutions.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-b-4 border-[#635BFF]">
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">Agentic Commerce Protocol (ACP)</h3>
+                        <p class="text-base text-slate-600">A Stripe-proposed spec for standardizing how <span class="font-semibold text-slate-700">merchants expose</span> product, inventory, and order APIs to agents.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-xl shadow-sm border-b-4 border-[#32AFFF]">
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">Agent2Agent (A2A) Protocol</h3>
+                        <p class="text-base text-slate-600">An open protocol for enabling structured communication and collaboration <span class="font-semibold text-slate-700">between agents</span> across platforms.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-xl shadow-sm border-b-4 border-[#F1A444]">
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">Model Context Protocol (MCP)</h3>
+                        <p class="text-base text-slate-600">Standardizes how <span class="font-semibold text-slate-700">applications provide context</span> and tools (like Stripe's APIs) to LLMs.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-xl shadow-sm border-b-4 border-[#00D924]">
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">Know Your Agent (KYA)</h3>
+                        <p class="text-base text-slate-600">A governance framework for <span class="font-semibold text-slate-700">verifying an agent's identity</span> and authority, essential for trust and fraud prevention.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="text-center mt-24 py-10 border-t border-slate-200">
+            <p class="text-sm text-slate-500">&copy; 2025 Stripe & GSI Partners. Building the future of commerce, together.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const STRIPE_PALETTE = {
+                purple: '#635BFF',
+                orange: '#F1A444',
+                green: '#00D924',
+                blue: '#32AFFF',
+                slate: '#425466',
+                pink: '#F844F1',
+            };
+
+            const wrapLabel = (label, maxLength = 16) => {
+                if (typeof label !== 'string') return label;
+                const words = label.split(' ');
+                let lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).length > maxLength) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine ? currentLine + ' ' : '') + word;
+                    }
+                });
+                lines.push(currentLine);
+                return lines;
+            };
+            
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                  return label.join(' ');
+                } else {
+                  return label;
+                }
+            };
+
+            const SHARED_CHART_OPTIONS = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                         labels: {
+                            font: { family: 'Inter', size: 12 },
+                            color: '#425466'
+                        }
+                    },
+                    tooltip: {
+                        enabled: true,
+                        backgroundColor: '#FFFFFF',
+                        titleColor: '#0A2540',
+                        bodyColor: '#425466',
+                        borderColor: '#E6E6E6',
+                        borderWidth: 1,
+                        padding: 10,
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        },
+                        bodyFont: { family: 'Inter' },
+                        titleFont: { family: 'Inter', weight: 'bold' }
+                    }
+                }
+            };
+
+            // Chart 1: Role Delineation (Stacked Bar)
+            const roleCtx = document.getElementById('roleDelineationChart').getContext('2d');
+            const roleLabels = [
+                'User Interaction', 'Agent Core', 'Buy-Side Execution', 'Sell-Side Enablement', 'Financial Transaction', 'Trust & Governance'
+            ].map(l => wrapLabel(l));
+            
+            new Chart(roleCtx, {
+                type: 'bar',
+                data: {
+                    labels: roleLabels,
+                    datasets: [{
+                        label: 'Stripe\'s Role',
+                        data: [10, 5, 25, 5, 95, 40],
+                        backgroundColor: STRIPE_PALETTE.purple,
+                        borderRadius: 4
+                    }, {
+                        label: 'Partner Opportunity',
+                        data: [90, 95, 75, 95, 5, 60],
+                        backgroundColor: STRIPE_PALETTE.orange,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    ...SHARED_CHART_OPTIONS,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            stacked: true,
+                            ticks: { callback: value => value + '%', color: '#425466' },
+                            grid: { drawOnChartArea: false }
+                        },
+                        y: {
+                            stacked: true,
+                            ticks: { color: '#425466' },
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: { ...SHARED_CHART_OPTIONS.plugins,
+                        tooltip: { ...SHARED_CHART_OPTIONS.plugins.tooltip,
+                           callbacks: {
+                               ...SHARED_CHART_OPTIONS.plugins.tooltip.callbacks,
+                               label: (context) => `${context.dataset.label}: ${context.raw}%`
+                           }
+                        }
+                    }
+                }
+            });
+
+            // Chart 2: Partner Opportunity (Horizontal Bar)
+            const opportunityCtx = document.getElementById('opportunityChart').getContext('2d');
+            new Chart(opportunityCtx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        'Sell-Side Modernization',
+                        'Agent Core Development',
+                        'Buy-Side Execution Logic',
+                        'User Interaction & UX',
+                        'Trust & Governance Frameworks'
+                    ].map(l => wrapLabel(l)),
+                    datasets: [{
+                        label: 'Relative Opportunity Score',
+                        data: [95, 90, 75, 70, 65],
+                        backgroundColor: [STRIPE_PALETTE.green, STRIPE_PALETTE.blue, STRIPE_PALETTE.orange, STRIPE_PALETTE.pink, STRIPE_PALETTE.slate],
+                        borderRadius: 4,
+                    }]
+                },
+                options: {
+                    ...SHARED_CHART_OPTIONS,
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { ...SHARED_CHART_OPTIONS.plugins.tooltip }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Opportunity Score (Higher is Better)', color: '#425466' },
+                            grid: { drawOnChartArea: false },
+                            ticks: { color: '#425466' }
+                        },
+                        y: {
+                           grid: { display: false },
+                           ticks: { color: '#425466' }
+                        }
+                    }
+                }
+            });
+            
+            // Donut Charts
+            const DONUT_OPTIONS = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                         ...SHARED_CHART_OPTIONS.plugins.tooltip,
+                         callbacks: {
+                           title: () => '',
+                           label: (context) => ` ${context.label}: ${context.formattedValue}%`
+                        }
+                    }
+                },
+                cutout: '70%',
+            };
+            
+            // Spend Chart
+            const spendCtx = document.getElementById('spendChart').getContext('2d');
+            new Chart(spendCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Virtual Cards', 'Spending Controls', 'Reconciliation'],
+                    datasets: [{
+                        data: [50, 35, 15],
+                        backgroundColor: [STRIPE_PALETTE.purple, STRIPE_PALETTE.blue, STRIPE_PALETTE.orange],
+                        borderWidth: 0
+                    }]
+                },
+                options: DONUT_OPTIONS
+            });
+
+            // Monetize Chart
+            const monetizeCtx = document.getElementById('monetizeChart').getContext('2d');
+            new Chart(monetizeCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Usage-Based Metering', 'Subscriptions', 'Platform Fees'],
+                    datasets: [{
+                        data: [60, 25, 15],
+                        backgroundColor: [STRIPE_PALETTE.blue, STRIPE_PALETTE.green, STRIPE_PALETTE.purple],
+                        borderWidth: 0
+                    }]
+                },
+                options: DONUT_OPTIONS
+            });
+
+            // Trust Chart
+            const trustCtx = document.getElementById('trustChart').getContext('2d');
+            new Chart(trustCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['AI-Powered Fraud Detection', 'Identity Verification', 'Dispute Management'],
+                    datasets: [{
+                        data: [70, 20, 10],
+                        backgroundColor: [STRIPE_PALETTE.green, STRIPE_PALETTE.orange, STRIPE_PALETTE.pink],
+                        borderWidth: 0
+                    }]
+                },
+                options: DONUT_OPTIONS
+            });
+        });
+    </script>
+</body>
+</html>

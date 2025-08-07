@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stripe Partner Ecosystem: User Stories</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .brand-primary {
+            color: #7A73FF;
+        }
+        .bg-brand-primary {
+            background-color: #7A73FF;
+        }
+        .border-brand-primary {
+            border-color: #7A73FF;
+        }
+        .bg-brand-secondary {
+            background-color: #D0D7DE;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <h2 class="text-2xl font-semibold brand-primary tracking-wide uppercase mb-4">Stripe Partner Ecosystem</h2>
+            <h1 class="text-4xl font-bold text-slate-800 tracking-tight">Salesforce Integration User Stories</h1>
+            <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">A guide to common integration user stories, outlining the products, pathways, and key considerations for connecting two powerful platforms.</p>
+        </header>
+
+        <!-- Assumption Note -->
+        <div class="max-w-4xl mx-auto bg-indigo-50 border-l-4 border-brand-primary rounded-r-lg p-4 mb-12">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 brand-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <p class="text-sm text-indigo-700">
+                        <span class="font-medium">Core Assumption:</span> These user stories assume the business is already using or plans to use Salesforce as a primary platform for its CRM, e-commerce, or customer service operations.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Stories Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Story Card 1: Simple B2C Payments -->
+            <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-lg font-bold brand-primary mb-4">"As a B2C merchant, I want to quickly set up payments on my new Salesforce storefront with a simple, 'out-of-the-box' solution."</h3>
+                <div class="space-y-4 mt-auto">
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h7.5" /></svg>Salesforce Product(s)</h4>
+                        <p class="text-slate-600 pl-7">B2C Commerce Cloud</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h6m-6 2.25h6M12 9.75l1.5 1.5m-1.5-1.5l-1.5 1.5m1.5-1.5V3.75" /></svg>Stripe Product(s)</h4>
+                        <p class="text-slate-600 pl-7">Payments, Radar</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg>Integration Path</h4>
+                        <p class="pl-7"><span class="badge bg-brand-primary text-white">Native Integration</span></p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.47-2.47a.64.64 0 01.9 0l2.47 2.47M11.42 15.17l-2.47 2.47a.64.64 0 000 .9l2.47 2.47M3 21l6.82-6.82M3 3l6.82 6.82" /></svg>Effort & Considerations</h4>
+                        <p class="text-slate-600 pl-7"><strong class="font-medium text-slate-800">Low.</strong> "Click and Go" setup sold by Salesforce. Ideal for speed but supports fewer regions and payment methods than the connector.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Story Card 2: Global E-commerce -->
+            <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-lg font-bold brand-primary mb-4">"As a global e-commerce brand, I need to accept payments in multiple countries and offer various local payment methods on my Salesforce site."</h3>
+                <div class="space-y-4 mt-auto">
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h7.5" /></svg>Salesforce Product(s)</h4>
+                        <p class="text-slate-600 pl-7">B2C Commerce Cloud</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h6m-6 2.25h6M12 9.75l1.5 1.5m-1.5-1.5l-1.5 1.5m1.5-1.5V3.75" /></svg>Stripe Product(s)</h4>
+                        <p class="text-slate-600 pl-7">Payments</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg>Integration Path</h4>
+                        <p class="pl-7"><span class="badge bg-brand-secondary text-slate-800">Connector</span></p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.47-2.47a.64.64 0 01.9 0l2.47 2.47M11.42 15.17l-2.47 2.47a.64.64 0 000 .9l2.47 2.47M3 21l6.82-6.82M3 3l6.82 6.82" /></svg>Effort & Considerations</h4>
+                        <p class="text-slate-600 pl-7"><strong class="font-medium text-slate-800">Medium.</strong> Use the Stripe Connector for Commerce Cloud. Offers maximum flexibility for global reach and can be customized.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Story Card 3: Connected Order Management -->
+            <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-lg font-bold brand-primary mb-4">"As an operations manager, I need payment and fulfillment workflows to be seamlessly connected so our inventory and order status are always accurate."</h3>
+                <div class="space-y-4 mt-auto">
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h7.5" /></svg>Salesforce Product(s)</h4>
+                        <p class="text-slate-600 pl-7">Order Management (SOM), B2C Commerce Cloud</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h6m-6 2.25h6M12 9.75l1.5 1.5m-1.5-1.5l-1.5 1.5m1.5-1.5V3.75" /></svg>Stripe Product(s)</h4>
+                        <p class="text-slate-600 pl-7">Payments</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg>Integration Path</h4>
+                        <p class="pl-7"><span class="badge bg-brand-secondary text-slate-800">Connector</span></p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.47-2.47a.64.64 0 01.9 0l2.47 2.47M11.42 15.17l-2.47 2.47a.64.64 0 000 .9l2.47 2.47M3 21l6.82-6.82M3 3l6.82 6.82" /></svg>Effort & Considerations</h4>
+                        <p class="text-slate-600 pl-7"><strong class="font-medium text-slate-800">Medium.</strong> Use the Stripe Connector for SOM. This requires the main Commerce Cloud connector to be installed first.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Story Card 4: B2B Subscriptions in CPQ -->
+            <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-lg font-bold brand-primary mb-4">"As a sales rep, I want to create and manage B2B customer subscriptions directly within Salesforce CPQ, so I don't have to switch between systems."</h3>
+                <div class="space-y-4 mt-auto">
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h7.5" /></svg>Salesforce Product(s)</h4>
+                        <p class="text-slate-600 pl-7">Revenue Cloud (CPQ), Sales Cloud</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h6m-6 2.25h6M12 9.75l1.5 1.5m-1.5-1.5l-1.5 1.5m1.5-1.5V3.75" /></svg>Stripe Product(s)</h4>
+                        <p class="text-slate-600 pl-7">Billing, Payments, Invoicing</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg>Integration Path</h4>
+                        <p class="pl-7"><span class="badge bg-brand-secondary text-slate-800">Connector</span></p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.47-2.47a.64.64 0 01.9 0l2.47 2.47M11.42 15.17l-2.47 2.47a.64.64 0 000 .9l2.47 2.47M3 21l6.82-6.82M3 3l6.82 6.82" /></svg>Effort & Considerations</h4>
+                        <p class="text-slate-600 pl-7"><strong class="font-medium text-slate-800">Medium.</strong> Use the Stripe Billing Connector. Syncs quotes and orders to automate the quote-to-cash process.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Story Card 5: Service Cloud Payments -->
+             <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-lg font-bold brand-primary mb-4">"As a customer service agent, I need to send a payment link to a customer during a live call to resolve their billing issue in a single interaction."</h3>
+                <div class="space-y-4 mt-auto">
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h7.5" /></svg>Salesforce Product(s)</h4>
+                        <p class="text-slate-600 pl-7">Service Cloud, Experience Cloud</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h6m-6 2.25h6M12 9.75l1.5 1.5m-1.5-1.5l-1.5 1.5m1.5-1.5V3.75" /></svg>Stripe Product(s)</h4>
+                        <p class="text-slate-600 pl-7">Payments, Checkout</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg>Integration Path</h4>
+                        <p class="pl-7"><span class="badge bg-green-100 text-green-800">API / Component</span></p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.47-2.47a.64.64 0 01.9 0l2.47 2.47M11.42 15.17l-2.47 2.47a.64.64 0 000 .9l2.47 2.47M3 21l6.82-6.82M3 3l6.82 6.82" /></svg>Effort & Considerations</h4>
+                        <p class="text-slate-600 pl-7"><strong class="font-medium text-slate-800">Medium to High.</strong> Use the Stripe Lightning Web Component or MuleSoft Connector. Empowers agents to resolve issues faster.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Story Card 6: Third-Party Managed Package -->
+            <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-lg font-bold brand-primary mb-4">"As a Salesforce admin, I need a comprehensive, third-party managed package for payments and billing that offers robust features and dedicated support."</h3>
+                <div class="space-y-4 mt-auto">
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h7.5" /></svg>Salesforce Product(s)</h4>
+                        <p class="text-slate-600 pl-7">Sales Cloud, Service Cloud, etc.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h6m-6 2.25h6M12 9.75l1.5 1.5m-1.5-1.5l-1.5 1.5m1.5-1.5V3.75" /></svg>Stripe Product(s)</h4>
+                        <p class="text-slate-600 pl-7">Payments, Billing</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg>Integration Path</h4>
+                        <p class="pl-7"><span class="badge bg-orange-100 text-orange-800">Partner Connector</span></p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-slate-700 flex items-center"><svg class="h-5 w-5 mr-2 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.47-2.47a.64.64 0 01.9 0l2.47 2.47M11.42 15.17l-2.47 2.47a.64.64 0 000 .9l2.47 2.47M3 21l6.82-6.82M3 3l6.82 6.82" /></svg>Effort & Considerations</h4>
+                        <p class="text-slate-600 pl-7"><strong class="font-medium text-slate-800">Medium.</strong> Use a solution like Blackthorn. Involves a license fee but provides a feature-rich, supported solution.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stripe + Partner: The Stablecoin Opportunity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the specified color palette and general aesthetics */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f7f4; /* Light background */
+            color: #1f2937; /* Dark text for contrast */
+        }
+        .primary-color {
+            color: #7A73FF; /* Core color */
+        }
+        .primary-bg {
+            background-color: #7A73FF; /* Core background color */
+        }
+        .primary-border {
+            border-color: #7A73FF; /* Core border color */
+        }
+        .secondary-color {
+            color: #D0D7DE; /* Secondary color */
+        }
+        .secondary-bg {
+            background-color: #D0D7DE; /* Secondary background color */
+        }
+        .secondary-border {
+            border-color: #D0D7DE; /* Secondary border color */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 40vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .modal-backdrop {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .modal-content {
+            transition: transform 0.3s ease-in-out;
+        }
+        .active-tab {
+            background-color: #7A73FF !important;
+            color: #ffffff !important;
+            border-color: #7A73FF !important;
+        }
+        .tab-button {
+            transition: all 0.2s ease-in-out;
+            border-radius: 0.5rem; /* Apply rounded corners to tabs */
+        }
+        .card-enter {
+            animation: card-enter-animation 0.5s ease-out forwards;
+        }
+        @keyframes card-enter-animation {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Ensure all elements have rounded corners */
+        .rounded-xl, .rounded-lg, .rounded-md, .rounded-full {
+            border-radius: 0.75rem; /* Tailwind's default xl is 0.75rem */
+        }
+        /* Custom scrollbar for modals */
+        .max-h-[90vh]::-webkit-scrollbar {
+            width: 8px;
+        }
+        .max-h-[90vh]::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .max-h-[90vh]::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        .max-h-[90vh]::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        /* SVG Diagram Styles */
+        .diagram-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            width: 100%;
+            overflow-x: auto; /* Allow horizontal scrolling on small screens */
+        }
+        .diagram-node {
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 500; /* font-medium */
+            fill: #1f2937; /* text-gray-900 */
+        }
+        .diagram-box {
+            stroke: #D0D7DE; /* secondary-border */
+            stroke-width: 2;
+            fill: #ffffff; /* bg-white */
+            rx: 8; /* rounded-lg */
+            ry: 8;
+        }
+        .diagram-arrow {
+            stroke: #4b5563; /* text-gray-600 */
+            stroke-width: 2;
+            fill: none;
+            marker-end: url(#arrowhead);
+        }
+        .diagram-arrow-label {
+            font-size: 0.75rem; /* text-xs */
+            fill: #4b5563; /* text-gray-600 */
+        }
+        .primary-diagram-box {
+            stroke: #7A73FF; /* primary-border */
+            stroke-width: 2;
+            fill: #ffffff; /* bg-white */
+            rx: 8; /* rounded-lg */
+            ry: 8;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header / Navigation Bar -->
+    <header class="bg-white/80 backdrop-blur-sm sticky top-0 z-40 shadow-sm rounded-b-xl">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 primary-bg rounded-md flex items-center justify-center text-white font-bold text-lg shadow-lg">S</div>
+                    <h1 class="text-xl font-bold text-gray-800">Stripe + Partner</h1>
+                </div>
+                <nav class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#introduction" class="text-gray-600 hover:text-[#7A73FF] px-3 py-2 rounded-md text-sm font-medium">Intro</a>
+                        <a href="#crypto-basics" class="text-gray-600 hover:text-[#7A73FF] px-3 py-2 rounded-md text-sm font-medium">Crypto Basics</a>
+                        <a href="#stablecoin-opportunity" class="text-gray-600 hover:text-[#7A73FF] px-3 py-2 rounded-md text-sm font-medium">Opportunity</a>
+                        <a href="#bridge-apis" class="text-gray-600 hover:text-[#7A73FF] px-3 py-2 rounded-md text-sm font-medium">Bridge APIs</a>
+                        <a href="#co-development" class="text-gray-600 hover:text-[#7A73FF] px-3 py-2 rounded-md text-sm font-medium">Co-Development</a>
+                        <a href="#qualification" class="text-gray-600 hover:text-[#7A73FF] px-3 py-2 rounded-md text-sm font-medium">Qualification</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Introduction Section -->
+        <section id="introduction" class="py-16 sm:py-24 bg-white rounded-b-xl shadow-lg mb-8">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <p class="text-base font-semibold primary-color">Onsite Workshop</p>
+                <h2 class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">Unlocking the Stablecoin Revolution Together</h2>
+                <p class="mt-6 max-w-3xl mx-auto text-lg leading-8 text-gray-600">
+                    This workshop aims to facilitate a discussion around stablecoins: what they are, their supported use cases, and how Stripe, with its Bridge infrastructure, can co-develop and bring new solutions to market with our partners.
+                </p>
+            </div>
+        </section>
+
+        <!-- Crypto Basics Section -->
+        <section id="crypto-basics" class="py-16 sm:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                     <h3 class="text-3xl font-bold tracking-tight text-gray-900">Key Crypto Concepts & The End-to-End Flow</h3>
+                     <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">Let's establish a common understanding of the foundational terms and how value moves in the stablecoin ecosystem.</p>
+                </div>
+                <div class="max-w-4xl mx-auto space-y-10">
+                    <div class="bg-white p-8 rounded-xl shadow-md secondary-border border-2">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2">Fiat: Your Everyday Currency</h4>
+                        <p class="text-gray-600">Think of Fiat as any government-issued currency, like the US dollar, Euro, or Japanese Yen. It's centralized and controlled by a central bank.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md secondary-border border-2">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2">Stablecoin: A Digital Dollar on the Internet</h4>
+                        <p class="text-gray-600">A Stablecoin is a type of cryptocurrency whose value is "pegged" to another asset, usually a fiat currency. For example, USDC is designed to always be worth one US dollar, backed by reserves. It's not for speculation, but for fast, stable transactions.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md secondary-border border-2">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2">Blockchain: A Shared, Transparent Ledger</h4>
+                        <p class="text-gray-600">The Blockchain is a distributed digital ledger where all stablecoin transactions are recorded. Imagine it as a public, unchangeable "notebook" where every transaction is logged and visible to everyone, creating trust without a central intermediary.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md secondary-border border-2">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2">Crypto Wallet: Your Digital Safe</h4>
+                        <p class="text-gray-600">A Crypto Wallet is a digital tool for storing cryptocurrencies. A custodial wallet is managed by a third party (like Bridge), holding the private keys for you. A non-custodial wallet gives you full control over your private keys and funds, but also full responsibility for security.</p>
+                    </div>
+                </div>
+
+                <div class="mt-16">
+                    <h4 class="text-2xl font-bold tracking-tight text-gray-900 text-center mb-8">The End-to-End Stablecoin Flow: From Fiat to Fiat, Faster</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                        <div class="bg-white p-8 rounded-xl shadow-md border-2 border-gray-200">
+                            <h4 class="text-xl font-semibold text-gray-800 mb-4">Traditional International Payment</h4>
+                            <p class="text-gray-600 mb-4">Sending money overseas often involves a slow, expensive chain of banks, each adding fees and delays.</p>
+                            <div class="space-y-2 text-sm text-gray-700">
+                                <div class="flex items-center p-2 bg-gray-50 rounded-md shadow-sm">Your Bank <span class="ml-auto text-red-500 font-mono">-Fee</span></div>
+                                <div class="text-center text-gray-400">&#11167;</div>
+                                <div class="flex items-center p-2 bg-gray-50 rounded-md shadow-sm">Correspondent Bank #1 <span class="ml-auto text-red-500 font-mono">-Fee</span></div>
+                                <div class="text-center text-gray-400">&#11167;</div>
+                                <div class="flex items-center p-2 bg-gray-50 rounded-md shadow-sm">Correspondent Bank #2 <span class="ml-auto text-red-500 font-mono">-Fee</span></div>
+                                <div class="text-center text-gray-400">&#11167;</div>
+                                <div class="flex items-center p-2 bg-gray-50 rounded-md shadow-sm">Recipient's Bank <span class="ml-auto text-red-500 font-mono">-Fee</span></div>
+                            </div>
+                             <p class="mt-4 text-xs text-gray-500">Result: Takes 3-5 days, high costs, limited to banking hours.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-xl shadow-md primary-border border-2">
+                            <h4 class="text-xl font-semibold primary-color mb-4">Stablecoin Payment with Bridge</h4>
+                            <p class="text-gray-600 mb-4">A direct, efficient path from sender to recipient, leveraging the blockchain for speed and cost-effectiveness.</p>
+                            <div class="space-y-2 text-sm text-gray-700">
+                                <div class="flex items-center p-2 bg-gray-50 rounded-md shadow-sm">You (Fiat)</div>
+                                <div class="text-center text-gray-400 font-mono text-xs">On-Ramp (Fiat to Stablecoin)</div>
+                                <div class="text-center text-gray-400">&#11167;</div>
+                                <div class="flex items-center p-2 bg-gray-50 rounded-md shadow-sm">Blockchain (tiny network fee)</div>
+                                <div class="text-center text-gray-400">&#11167;</div>
+                                <div class="text-center text-gray-400 font-mono text-xs">Off-Ramp (Stablecoin to Fiat)</div>
+                                <div class="text-center text-gray-400">&#11167;</div>
+                                <div class="flex items-center p-2 bg-gray-50 rounded-md shadow-sm">Them (Fiat)</div>
+                            </div>
+                            <p class="mt-4 text-xs text-gray-500">Result: Takes seconds, costs pennies, works 24/7, global reach.</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 max-w-4xl mx-auto">
+                        <h4 class="text-xl font-bold tracking-tight text-gray-900 text-center mb-4">Visualizing the Flows</h4>
+
+                        <!-- On-ramp Flow -->
+                        <h5 class="text-lg font-semibold text-gray-800 mb-2 mt-6">On-ramp (Fiat to Stablecoin)</h5>
+                        <div class="diagram-container">
+                            <svg width="460" height="100" viewBox="0 0 460 100">
+                                <defs>
+                                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+                                        <polygon points="0 0, 10 3.5, 0 7" fill="#4b5563" />
+                                    </marker>
+                                </defs>
+                                <!-- Nodes -->
+                                <rect x="10" y="30" width="120" height="40" class="diagram-box" />
+                                <text x="70" y="55" text-anchor="middle" class="diagram-node">Fiat Bank</text>
+
+                                <rect x="170" y="30" width="120" height="40" class="primary-diagram-box" />
+                                <text x="230" y="55" text-anchor="middle" class="diagram-node">Bridge</text>
+
+                                <rect x="330" y="30" width="120" height="40" class="primary-diagram-box" />
+                                <text x="390" y="55" text-anchor="middle" class="diagram-node">Stablecoin Wallet</text>
+
+                                <!-- Arrows -->
+                                <line x1="130" y1="50" x2="170" y2="50" class="diagram-arrow" />
+                                <text x="150" y="25" text-anchor="middle" class="diagram-arrow-label">Deposit USD</text>
+
+                                <line x1="290" y1="50" x2="330" y2="50" class="diagram-arrow" />
+                                <text x="310" y="25" text-anchor="middle" class="diagram-arrow-label">Mint USDC</text>
+                            </svg>
+                        </div>
+
+                        <!-- Off-ramp Flow -->
+                        <h5 class="text-lg font-semibold text-gray-800 mb-2 mt-6">Off-ramp (Stablecoin to Fiat)</h5>
+                        <div class="diagram-container">
+                            <svg width="460" height="100" viewBox="0 0 460 100">
+                                <defs>
+                                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+                                        <polygon points="0 0, 10 3.5, 0 7" fill="#4b5563" />
+                                    </marker>
+                                </defs>
+                                <!-- Nodes -->
+                                <rect x="10" y="30" width="120" height="40" class="primary-diagram-box" />
+                                <text x="70" y="55" text-anchor="middle" class="diagram-node">Stablecoin Wallet</text>
+
+                                <rect x="170" y="30" width="120" height="40" class="primary-diagram-box" />
+                                <text x="230" y="55" text-anchor="middle" class="diagram-node">Bridge</text>
+
+                                <rect x="330" y="30" width="120" height="40" class="diagram-box" />
+                                <text x="390" y="55" text-anchor="middle" class="diagram-node">Fiat Bank</text>
+
+                                <!-- Arrows -->
+                                <line x1="130" y1="50" x2="170" y2="50" class="diagram-arrow" />
+                                <text x="150" y="25" text-anchor="middle" class="diagram-arrow-label">Burn USDC</text>
+
+                                <line x1="290" y1="50" x2="330" y2="50" class="diagram-arrow" />
+                                <text x="310" y="25" text-anchor="middle" class="diagram-arrow-label">Withdraw USD</text>
+                            </svg>
+                        </div>
+
+                        <!-- Crypto-to-Crypto Flow -->
+                        <h5 class="text-lg font-semibold text-gray-800 mb-2 mt-6">Crypto-to-Crypto Transfer (e.g., USDC to USDT)</h5>
+                        <div class="diagram-container">
+                            <svg width="460" height="100" viewBox="0 0 460 100">
+                                <defs>
+                                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+                                        <polygon points="0 0, 10 3.5, 0 7" fill="#4b5563" />
+                                    </marker>
+                                </defs>
+                                <!-- Nodes -->
+                                <rect x="10" y="30" width="120" height="40" class="primary-diagram-box" />
+                                <text x="70" y="55" text-anchor="middle" class="diagram-node">USDC Wallet</text>
+
+                                <rect x="170" y="30" width="120" height="40" class="primary-diagram-box" />
+                                <text x="230" y="55" text-anchor="middle" class="diagram-node">Bridge</text>
+
+                                <rect x="330" y="30" width="120" height="40" class="primary-diagram-box" />
+                                <text x="390" y="55" text-anchor="middle" class="diagram-node">USDT Wallet</text>
+
+                                <!-- Arrows -->
+                                <line x1="130" y1="50" x2="170" y2="50" class="diagram-arrow" />
+                                <text x="150" y="25" text-anchor="middle" class="diagram-arrow-label">Send USDC</text>
+
+                                <line x1="290" y1="50" x2="330" y2="50" class="diagram-arrow" />
+                                <text x="310" y="25" text-anchor="middle" class="diagram-arrow-label">Receive USDT</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stablecoin Opportunity Section -->
+        <section id="stablecoin-opportunity" class="py-16 sm:py-24 bg-white rounded-xl shadow-lg my-8">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold tracking-tight text-gray-900">The Stablecoin Opportunity: Why Now?</h3>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">
+                        Stablecoins are transforming global money movement, offering significant speed, coverage, and cost improvements for businesses worldwide.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h4 class="text-xl font-semibold primary-color mb-2">Market Growth</h4>
+                        <p class="text-gray-700">The stablecoin market is experiencing explosive growth, with transaction volumes surpassing traditional payment giants. This indicates a clear shift in how businesses want to move money.</p>
+                        <div class="chart-container mt-4">
+                            <canvas id="marketGrowthChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h4 class="text-xl font-semibold primary-color mb-2">Bridge's Role: Simplifying Complexity</h4>
+                        <p class="text-gray-700">Stripe, through Bridge, provides the underlying infrastructure to abstract away the complexities of stablecoin integration. This allows businesses to focus on their core products while leveraging the benefits of digital dollars.</p>
+                        <ul class="list-disc list-inside text-gray-600 mt-4 space-y-2">
+                            <li>Bridge: Orchestrates fiat-to-crypto and crypto-to-fiat conversions.</li>
+                            <li>Privy (Stripe Acquisition): Provides embedded, secure crypto wallets for end-users.</li>
+                        </ul>
+                        <p class="text-gray-700 mt-4 font-medium">This combined offering creates a powerful, integrated solution for global money movement and storage.</p>
+                    </div>
+                </div>
+                <div class="mt-12 text-center">
+                    <p class="text-lg text-gray-700 font-semibold">
+                        Discovery-Based Question: What are some of the most significant challenges your business faces today in moving money globally, and what pain points do you hear from your customers about their global money movement?
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bridge APIs & Use Cases Section -->
+        <section id="bridge-apis" class="py-16 sm:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold tracking-tight text-gray-900">Bridge's Core APIs: Powering Diverse Use Cases</h3>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">
+                        Bridge offers powerful APIs that enable developers to build innovative financial solutions. Explore how our Orchestration and Issuance APIs support various business needs.
+                    </p>
+                </div>
+                <div class="flex justify-center space-x-2 md:space-x-4 mb-12">
+                    <button id="tab-orchestration" class="tab-button w-1/2 md:w-auto text-center font-semibold py-3 px-6 border-2 secondary-border rounded-lg shadow-sm hover:bg-gray-100 active-tab">
+                        <span class="text-2xl block mb-1">&#128176;</span> Orchestration Use Cases
+                    </button>
+                    <button id="tab-issuance" class="tab-button w-1/2 md:w-auto text-center font-semibold py-3 px-6 border-2 secondary-border rounded-lg shadow-sm hover:bg-gray-100">
+                        <span class="text-2xl block mb-1">&#128178;</span> Issuance Use Cases
+                    </button>
+                </div>
+
+                <!-- Case Studies Container (Dynamic Content) -->
+                <div id="case-studies-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                    <!-- Case study cards will be rendered here by JavaScript -->
+                </div>
+
+                <div class="mt-12 text-center">
+                    <p class="text-lg text-gray-700 font-semibold">
+                        Discovery-Based Question: Which of these use cases resonates most with your business's strategic goals, and which of these pain points have you heard from your customers?
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bridge Product Capabilities Section -->
+        <section id="product-capabilities" class="py-16 sm:py-24 bg-white rounded-xl shadow-lg my-8">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold tracking-tight text-gray-900">Bridge's Foundational Product Capabilities</h3>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">
+                        These are the core APIs that underpin all of Bridge's solutions, simplifying complex money movement workflows.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border secondary-border">
+                        <h4 class="text-xl font-semibold primary-color mb-2">Transfers API</h4>
+                        <p class="text-gray-700">For one-time transactions: on-ramps (fiat to crypto), off-ramps (crypto to fiat), or crypto-to-crypto conversions across various rails.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border secondary-border">
+                        <h4 class="text-xl font-semibold primary-color mb-2">Liquidation Addresses</h4>
+                        <p class="text-gray-700">A permanent, automated route for recurring transactions, linking a blockchain address directly to an external bank account or another crypto address.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border secondary-border">
+                        <h4 class="text-xl font-semibold primary-color mb-2">Virtual Accounts</h4>
+                        <p class="text-gray-700">Sub-accounts of Bridge's main bank account, uniquely provisioned for end customers to easily identify incoming fiat deposits for on-ramping.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border secondary-border">
+                        <h4 class="text-xl font-semibold primary-color mb-2">Wallets API</h4>
+                        <p class="text-gray-700">Enables developers to create and manage secure custodial wallets for their users or company treasury, handling technical and security complexities.</p>
+                    </div>
+                </div>
+                <div class="mt-12 text-center">
+                    <p class="text-lg text-gray-700 font-semibold">
+                        Discovery-Based Question: Looking at the different API capabilities, what are the most complex financial workflows you are building today, and where do you see a need to automate or simplify those processes?
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Co-Development Opportunities Section -->
+        <section id="co-development" class="py-16 sm:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold tracking-tight text-gray-900">Co-Developing the Future of Finance</h3>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">
+                        For partners like you, the shift to stablecoins represents a generational opportunity to lead clients into the future of finance. By combining Stripe's robust infrastructure with your advisory services, we can build high-value service offerings and drive significant impact.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
+                    <div class="p-8 bg-white rounded-lg shadow-md border primary-border">
+                        <div class="flex items-center mb-4">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-full primary-bg/20 primary-color text-2xl font-bold mr-4 shadow-sm">1</div>
+                            <h4 class="text-lg font-semibold text-gray-900">Advisory: Digital Treasury Transformation</h4>
+                        </div>
+                        <p class="text-base text-gray-600">Your expertise can guide clients in re-architecting their treasury functions. This involves assessing cross-border payments, FX management, and liquidity to build a compelling business case for stablecoins, designing a future-state operating model powered by Stripe's infrastructure.</p>
+                    </div>
+                    <div class="p-8 bg-white rounded-lg shadow-md border primary-border">
+                        <div class="flex items-center mb-4">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-full primary-bg/20 primary-color text-2xl font-bold mr-4 shadow-sm">2</div>
+                            <h4 class="text-lg font-semibold text-gray-900">Implementation: Global Payout & B2B Payment Modernization</h4>
+                        </div>
+                        <p class="text-base text-gray-600">We can jointly develop scalable solutions for clients needing to pay global suppliers or marketplace participants. Leveraging Stripe's APIs (Bridge for orchestration, Privy for wallets), we can build low-cost, 24/7 payout engines that replace legacy systems with modern, stablecoin-based solutions.</p>
+                    </div>
+                    <div class="p-8 bg-white rounded-lg shadow-md border primary-border">
+                        <div class="flex items-center mb-4">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-full primary-bg/20 primary-color text-2xl font-bold mr-4 shadow-sm">3</div>
+                            <h4 class="text-lg font-semibold text-gray-900">Advisory & Implementation: Stablecoin Issuance & Management</h4>
+                        </div>
+                        <p class="text-base text-gray-600">For clients interested in issuing their own stablecoins, your advisory services can help them understand the benefits (e.g., yield on reserves, counterparty risk). We can then co-implement solutions using Bridge's Issuance API, enabling them to control their own digital currency.</p>
+                    </div>
+                    <div class="p-8 bg-white rounded-lg shadow-md border primary-border">
+                        <div class="flex items-center mb-4">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-full primary-bg/20 primary-color text-2xl font-bold mr-4 shadow-sm">4</div>
+                            <h4 class="text-lg font-semibold text-gray-900">Integration: ERP & Core Systems Connectivity</h4>
+                        </div>
+                        <p class="text-base text-gray-600">Your technical expertise is crucial for integrating Stripe's stablecoin APIs directly into clients' core financial systems (e.g., ERP, TMS). This involves developing custom connectors for real-time reporting, automated reconciliation, and compliance, a high-value technical service.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Qualification Section -->
+        <section id="qualification" class="py-16 sm:py-24 bg-white rounded-xl shadow-lg my-8">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold tracking-tight text-gray-900">Understanding Your Customer: Personas & Qualification</h3>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">
+                        To effectively identify opportunities for stablecoin solutions, it's crucial to understand key customer personas, their common challenges, and how to qualify a lead.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <!-- Persona: IT/Engineering -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border secondary-border">
+                        <h4 class="text-xl font-semibold primary-color mb-2">Persona: IT/Engineering</h4>
+                        <p class="text-gray-700 font-medium">CIO / ITDM, Head of Systems Architecture</p>
+                        <p class="text-gray-600 text-sm mt-2">Role: Implementer, Decision Maker</p>
+                        <h5 class="text-lg font-semibold text-gray-800 mt-4">Common Concerns:</h5>
+                        <ul class="list-disc list-inside text-gray-600 text-sm">
+                            <li>Reliability of payments infrastructure.</li>
+                            <li>Struggling to navigate legacy systems.</li>
+                            <li>Desire to consolidate and modernize to the latest standard.</li>
+                        </ul>
+                        <h5 class="text-lg font-semibold text-gray-800 mt-4">How to Win:</h5>
+                        <p class="text-gray-600 text-sm">Position as forefront of money movement. Highlight decentralized infrastructure for high availability & reliability.</p>
+                    </div>
+
+                    <!-- Persona: Finance/Payments -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border secondary-border">
+                        <h4 class="text-xl font-semibold primary-color mb-2">Persona: Finance/Payments</h4>
+                        <p class="text-gray-700 font-medium">CFO, Head of Finance / Treasury / Payments, Controller</p>
+                        <p class="text-gray-600 text-sm mt-2">Role: Decision maker, Influencer, Blocker</p>
+                        <h5 class="text-lg font-semibold text-gray-800 mt-4">Common Concerns:</h5>
+                        <ul class="list-disc list-inside text-gray-600 text-sm">
+                            <li>High FX fees and long settlement times for treasury management.</li>
+                            <li>Reliance on cobbled-together legacy software.</li>
+                            <li>Desire to improve margin across products.</li>
+                        </ul>
+                        <h5 class="text-lg font-semibold text-gray-800 mt-4">How to Win:</h5>
+                        <p class="text-gray-600 text-sm">Emphasize tighter FX spreads for cost savings. Highlight simplification through fewer middlemen and streamlined workflows.</p>
+                    </div>
+
+                    <!-- Persona: Product -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border secondary-border">
+                        <h4 class="text-xl font-semibold primary-color mb-2">Persona: Product</h4>
+                        <p class="text-gray-700 font-medium">Head of Product, CTO</p>
+                        <p class="text-gray-600 text-sm mt-2">Role: Decision maker, Influencer, Blocker</p>
+                        <h5 class="text-lg font-semibold text-gray-800 mt-4">Common Concerns:</h5>
+                        <ul class="list-disc list-inside text-gray-600 text-sm">
+                            <li>Launching new financial products in many countries quickly.</li>
+                            <li>Growing internationally.</li>
+                            <li>Improving financial access for users.</li>
+                        </ul>
+                        <h5 class="text-lg font-semibold text-gray-800 mt-4">How to Win:</h5>
+                        <p class="text-gray-600 text-sm">Focus on speed to new markets and innovation. Highlight monetization opportunities and a simple, scalable infrastructure.</p>
+                    </div>
+                </div>
+
+                <div class="max-w-4xl mx-auto mb-12">
+                    <h4 class="text-2xl font-bold tracking-tight text-gray-900 text-center mb-8">Qualification Questions: Identifying the Right Fit</h4>
+                    <div class="bg-white p-8 rounded-xl shadow-md border primary-border">
+                        <h5 class="text-lg font-semibold text-gray-800 mb-4">Ask these questions:</h5>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>How are you currently moving money between countries?</li>
+                            <li>How frequently are you transferring money?</li>
+                            <li>Are your customers able to get access to dollar-based bank accounts?</li>
+                            <li>Do you issue cards? Do your customers need ways to spend funds in local currency? Where?</li>
+                        </ul>
+                        <h5 class="text-lg font-semibold text-gray-800 mt-6 mb-4">Listen for this pain:</h5>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Multi-vendor setups, many intermediaries, long settlement times, high FX cost, currency fluctuation.</li>
+                            <li>Inability to get access to dollars, complicated setups to convert local currencies into dollars, customers burdened by high inflation or unstable monetary policies.</li>
+                            <li>Complicated card agreements made country-by-country, inability to launch additional countries due to red tape.</li>
+                        </ul>
+                        <h5 class="text-lg font-semibold text-gray-800 mt-6 mb-4">Quantify this business impact:</h5>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>How much money are you losing moving money around the globe?</li>
+                            <li>How much time is your team spending to manually reconcile transfers?</li>
+                            <li>How would your customers benefit if they had access to a dollar-denominated account?</li>
+                            <li>If you had cards in the additional countries, how much more revenue would that be for you?</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <h4 class="text-2xl font-bold tracking-tight text-gray-900 text-center mb-8">Assessing User Readiness for Stablecoin Solutions</h4>
+                    <div class="bg-white p-8 rounded-xl shadow-md border primary-border">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <h5 class="text-lg font-semibold text-gray-800 mb-2">What's your selling motion?</h5>
+                                <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                    <li><span class="text-green-500">&#10003;</span> Digitally native with online customers</li>
+                                    <li><span class="text-yellow-500">&#9679;</span> Some business online</li>
+                                    <li><span class="text-red-500">&#10006;</span> Brick & mortar</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="text-lg font-semibold text-gray-800 mb-2">How comfortable are you with integration work?</h5>
+                                <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                    <li><span class="text-green-500">&#10003;</span> Experience building customized products using flexible APIs</li>
+                                    <li><span class="text-yellow-500">&#9679;</span> Open to exploring new integrations for novel use cases</li>
+                                    <li><span class="text-red-500">&#10006;</span> Looking for out-of-the-box solutions</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="text-lg font-semibold text-gray-800 mb-2">Do you currently sell across borders?</h5>
+                                <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                    <li><span class="text-green-500">&#10003;</span> Selling into many countries</li>
+                                    <li><span class="text-yellow-500">&#9679;</span> Primarily in one country but starting to grow internationally</li>
+                                    <li><span class="text-red-500">&#10006;</span> Only focused on domestic market</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mt-6 text-gray-700">
+                            <p class="font-semibold">Important Note:</p>
+                            <p class="text-sm">Today, Stripe's products do not directly integrate with Bridge APIs. Bridge sells an API-only product primarily to developers and requires the user to build UI flows on top of the integration. This means users may have two different API integrations and contracts. We're here to help navigate this complexity.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white rounded-t-xl shadow-lg mt-8">
+        <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center text-gray-500">
+            <p>&copy; 2025 Stripe + Partner. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal Structure for Case Study Details -->
+    <div id="modal" class="modal-backdrop fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 hidden opacity-0">
+        <div id="modal-content" class="modal-content bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 id="modal-title" class="text-2xl font-bold text-gray-900"></h3>
+                    <button id="modal-close" class="text-gray-400 hover:text-gray-600 text-3xl leading-none">&times;</button>
+                </div>
+                <div id="modal-body" class="mt-4 prose prose-indigo max-w-none text-gray-600"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Data for dynamic content
+        const appData = {
+            caseStudies: {
+                orchestration: [
+                    {
+                        id: 'scaleai',
+                        company: 'Scale AI',
+                        logo: '&#128100;', /* Generic icon for workforce */
+                        tagline: 'Streamlining Global Freelancer Payouts',
+                        challenge: "Paying 40,000 global freelance workers across various countries was slow, costly, and complex due to traditional banking rails and FX fees.",
+                        solution: "Leveraged Bridge's Orchestration APIs to convert USD payroll into USDC and disburse it to individual contractor wallets. Bridge handled the fiat-to-crypto conversion and on-chain distribution.",
+                        outcomes: [
+                            "Streamlined payout operations and saved costs.",
+                            "Pays contractors in their desired currencies, reducing FX fees.",
+                            "Achieved near-instant global payouts, improving contractor satisfaction."
+                        ]
+                    },
+                    {
+                        id: 'dolarapp',
+                        company: 'DolarApp',
+                        logo: '&#128177;', /* Money bag icon */
+                        tagline: 'Providing Dollar Access in High-Inflation Regions',
+                        challenge: "Consumers in countries with high inflation (e.g., Argentina, Mexico) had limited access to stable US dollars, impacting their savings and purchasing power.",
+                        solution: "Utilized Bridge's Virtual Accounts and Orchestration APIs to allow end customers to save and get paid in USD. On the backend, customer balances are held in stablecoins (e.g., USDC), appearing as USD to the user.",
+                        outcomes: [
+                            "Enabled users to preserve capital in inflationary environments.",
+                            "Provided easy access to dollar-denominated accounts globally.",
+                            "Integrated seamlessly with Bridge's Cards product for local spending."
+                        ]
+                    },
+                    {
+                        id: 'spacex',
+                        company: 'SpaceX',
+                        logo: '&#128640;', /* Rocket icon */
+                        tagline: 'Global Treasury Management & FX Optimization',
+                        challenge: "Managing FX volatility and liquidity across operations in emerging markets with unsophisticated FX infrastructure and local currency controls.",
+                        solution: "Partnered with Bridge to use stablecoin payments for faster intracompany transfers and treasury management.",
+                        outcomes: [
+                            "Cut settlement time from 2-3 days to under 90 minutes.",
+                            "Minimized FX exposure & reliance on local currency reserves with just-in-time stablecoin transfers.",
+                            "Enhanced liquidity to support expansion into Nigeria, Malawi, Rwanda, Argentina, Brazil, and the Dominican Republic."
+                        ]
+                    }
+                ],
+                issuance: [
+                    {
+                        id: 'cleva',
+                        company: 'Cleva',
+                        logo: '&#128188;', /* Briefcase icon */
+                        tagline: 'Combining Issuance & Wallets for Freelancers',
+                        challenge: "Cleva, a neobank for Nigerian freelancers, needed to provide a stable USD holding option in a volatile local currency environment, while also enabling easy spending.",
+                        solution: "Combined Bridge's Virtual Accounts (for US banking access), Wallets (for custodial stablecoin holding), and USDB (Bridge's native stablecoin for earning rewards) into a single package. This allowed freelancers to receive USD payments, hold them as USDB, and spend locally.",
+                        outcomes: [
+                            "Provided Nigerian freelancers with a stable dollar-denominated account.",
+                            "Enabled earning rewards on held balances (via USDB).",
+                            "Simplified the end-to-end flow from receiving international payments to local spending via cards."
+                        ]
+                    }
+                ]
+            },
+            comparison: [
+                {
+                    feature: 'Primary Function',
+                    orchestration: 'Converting between fiat and stablecoins, or between different stablecoins/blockchains.',
+                    issuance: 'Creating and managing your own branded stablecoin (xUSD) or using Bridge\'s native stablecoin (USDB).'
+                },
+                {
+                    feature: 'Value Proposition',
+                    orchestration: 'Speed, cost-efficiency, and global reach for money movement; access to dollar-denominated accounts.',
+                    issuance: 'Earn yield on reserves, full control over your digital currency, reduced counterparty risk, no incremental minting/burning fees.'
+                },
+                {
+                    feature: 'Complexity Handled by Bridge',
+                    orchestration: 'Regulatory compliance (KYC/AML), blockchain integration, liquidity management for conversions, gas management.',
+                    issuance: 'Reserve management (cash/treasuries), smart contract deployment, blockchain maintenance, compliance for the issued stablecoin.'
+                },
+                {
+                    feature: 'Ideal Partner Focus',
+                    orchestration: 'Partners building global payment solutions, cross-border remittance platforms, digital banks offering multi-currency accounts.',
+                    issuance: 'Partners advising on treasury modernization, branded currency solutions, or loyalty programs with digital assets.'
+                }
+            ]
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const caseStudiesContainer = document.getElementById('case-studies-container');
+            const tabOrchestration = document.getElementById('tab-orchestration');
+            const tabIssuance = document.getElementById('tab-issuance');
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modal-content');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            const modalClose = document.getElementById('modal-close');
+
+            let activeTab = 'orchestration'; // Default active tab
+
+            // Function to render case study cards based on active tab
+            function renderCaseStudies(type) {
+                caseStudiesContainer.innerHTML = ''; // Clear existing cards
+                appData.caseStudies[type].forEach((study, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'bg-white p-6 rounded-xl shadow-lg border border-gray-200 flex flex-col card-enter';
+                    card.style.animationDelay = `${index * 100}ms`; // Stagger animation
+                    card.innerHTML = `
+                        <div class="flex-grow">
+                            <div class="flex items-center mb-4">
+                                <span class="text-4xl mr-4">${study.logo}</span>
+                                <div>
+                                    <h4 class="text-xl font-bold text-gray-900">${study.company}</h4>
+                                    <p class="text-sm text-gray-500">${study.tagline}</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-4">${study.challenge}</p>
+                            <div class="bg-[#7A73FF]/10 text-[#7A73FF] p-4 rounded-lg text-center">
+                                <p class="text-sm font-medium">Key Outcome</p>
+                                <p class="text-xl font-bold">${study.metric || 'See Details'}</p>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <button data-id="${study.id}" data-type="${type}" class="learn-more-btn w-full primary-bg text-white font-semibold py-2 px-4 rounded-lg hover:opacity-90 transition-colors shadow-md">Learn More</button>
+                        </div>
+                    `;
+                    caseStudiesContainer.appendChild(card);
+                });
+            }
+
+            // Function to open the modal with case study details
+            function openModal(studyId, type) {
+                const study = appData.caseStudies[type].find(s => s.id === studyId);
+                if (!study) return;
+
+                modalTitle.textContent = `${study.company}: ${study.tagline}`;
+                let outcomesHtml = study.outcomes.map(outcome => `<li>${outcome}</li>`).join('');
+                modalBody.innerHTML = `
+                    <h4 class="text-lg font-semibold text-gray-800">Challenge</h4>
+                    <p class="text-gray-600 mb-4">${study.challenge}</p>
+                    <h4 class="text-lg font-semibold text-gray-800">Solution & Technology</h4>
+                    <p class="text-gray-600 mb-4">${study.solution}</p>
+                    <h4 class="text-lg font-semibold text-gray-800">Quantifiable Outcomes</h4>
+                    <ul class="list-disc list-inside text-gray-600">${outcomesHtml}</ul>
+                `;
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    modalContent.classList.remove('scale-95');
+                }, 10);
+            }
+
+            // Function to close the modal
+            function closeModal() {
+                modal.classList.add('opacity-0');
+                modalContent.classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            }
+            
+            // Function to switch active tabs
+            function switchTab(newTab) {
+                activeTab = newTab;
+                if (newTab === 'orchestration') {
+                    tabOrchestration.classList.add('active-tab');
+                    tabIssuance.classList.remove('active-tab');
+                } else {
+                    tabIssuance.classList.add('active-tab');
+                    tabOrchestration.classList.remove('active-tab');
+                }
+                renderCaseStudies(activeTab);
+            }
+
+            // Event Listeners for tabs
+            tabOrchestration.addEventListener('click', () => switchTab('orchestration'));
+            tabIssuance.addEventListener('click', () => switchTab('issuance'));
+
+            // Event Listener for "Learn More" buttons in case study cards
+            caseStudiesContainer.addEventListener('click', (e) => {
+                const button = e.target.closest('.learn-more-btn');
+                if (button) {
+                    const studyId = button.dataset.id;
+                    const type = button.dataset.type;
+                    openModal(studyId, type);
+                }
+            });
+
+            // Event Listeners for modal close
+            modalClose.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) { // Close if clicked outside modal content
+                    closeModal();
+                }
+            });
+
+            // Chart.js for Market Growth
+            const ctx = document.getElementById('marketGrowthChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2025', '2026', '2027', '2028', '2029', '2030'],
+                    datasets: [{
+                        label: 'Stablecoin Market Size (in Billions USD)',
+                        data: [230, 500, 950, 1500, 2200, 2800], /* Data from Stablecoin Overview HTML */
+                        borderColor: '#7A73FF',
+                        backgroundColor: 'rgba(122, 115, 255, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#7A73FF',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#7A73FF',
+                        pointRadius: 5,
+                        pointHoverRadius: 7
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value + 'B';
+                                },
+                                color: '#4b5563' /* Gray text for ticks */
+                            },
+                            grid: {
+                                color: '#e5e7eb' /* Light gray grid lines */
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#4b5563' /* Gray text for ticks */
+                            },
+                            grid: {
+                                color: '#e5e7eb' /* Light gray grid lines */
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                            labels: {
+                                color: '#374151' /* Darker gray for legend text */
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(31, 41, 55, 0.9)', /* Dark background for tooltip */
+                            titleColor: '#ffffff', /* White title */
+                            bodyColor: '#ffffff', /* White body text */
+                            padding: 10,
+                            cornerRadius: 8,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact' }).format(context.parsed.y * 1000000000);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            });
+
+            // Initial render of case studies
+            renderCaseStudies(activeTab);
+        });
+    </script>
+</body>
+</html>

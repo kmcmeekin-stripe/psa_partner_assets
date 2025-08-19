@@ -151,6 +151,9 @@
                         <a href="#introduction" class="text-gray-600 hover:text-[#7A73FF] px-3 py-2 rounded-md text-sm font-medium">Intro</a>
                         <a href="#crypto-basics" class="text-gray-600 hover:text-[#7A73FF] px-3 py-2 rounded-md text-sm font-medium">Crypto Basics</a>
                         <a href="#crypto-vs-stablecoins" class="text-gray-600 hover:text-[#7A73FF] px-3 py-2 rounded-md text-sm font-medium">Crypto vs. Stablecoins</a>
+                        <a href="#bank-vs-public-stablecoins" class="text-gray-600 hover:text-[#7A73FF] px-3 py-2 rounded-md text-sm font-medium">Bank vs. Public Stablecoins</a>
+                        <a href="#consumer-journey" class="text-gray-600 hover:text-[#7A73FF] px-3 py-2 rounded-md text-sm font-medium">Consumer Journey</a>
+                        <a href="#trade-offs" class="text-gray-600 hover:text-[#7A73FF] px-3 py-2 rounded-md text-sm font-medium">Trade-Offs</a>
                         <a href="#stablecoin-opportunity" class="text-gray-600 hover:text-[#7A73FF] px-3 py-2 rounded-md text-sm font-medium">Opportunity</a>
                         <a href="#bridge-apis" class="text-gray-600 hover:text-[#7A73FF] px-3 py-2 rounded-md text-sm font-medium">Bridge APIs</a>
                         <a href="#co-development" class="text-gray-600 hover:text-[#7A73FF] px-3 py-2 rounded-md text-sm font-medium">Co-Development</a>
@@ -353,6 +356,74 @@
             </div>
         </section>
 
+        <!-- New Section: Bank-Issued vs. Public Stablecoins -->
+        <section id="bank-vs-public-stablecoins" class="py-16 sm:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold tracking-tight text-gray-900">Bank-Issued vs. Public Stablecoins: A Merchant's Perspective</h3>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">
+                        There are significant differences between bank-issued stablecoins, like JPM Coin, and public stablecoins, like USDC, particularly regarding their utility for a merchant offering goods and services. The primary trade-offs revolve around control, access, and risk.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                    <!-- Bank-Issued Stablecoins -->
+                    <div class="bg-white p-8 rounded-xl shadow-md border-2 secondary-border">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-4">Bank-Issued Stablecoins (e.g., JPM Coin)</h4>
+                        <p class="text-gray-600 mb-4">Bank-issued stablecoins are essentially tokenized deposits on a private, permissioned blockchain operated by the issuing bank. Access is restricted to clients of that specific bank and its partners, creating a "walled garden" approach.</p>
+                        <h5 class="text-lg font-semibold primary-color mb-2">Pros for Merchants:</h5>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1 mb-4">
+                            <li>Built-in Compliance: The issuing bank handles the regulatory and compliance burden, including Know Your Customer (KYC) and Anti-Money Laundering (AML) checks, for all participants on its network. This can be a significant advantage for merchants who want a "compliance-in-a-box" solution.</li>
+                            <li>Reduced Counterparty Risk: The risk is concentrated with a single, highly-regulated banking partner.</li>
+                            <li>Treasury Modernization: For large enterprises with global treasury operations, these stablecoins are ideal for internal treasury optimization. A company can use them for real-time liquidity management and cross-border payments between its own accounts or with other clients on the same bank's network, even during non-banking hours. For example, Siemens used JPM Coin to automate treasury workflows like cash concentration based on predefined rules, leading to multi-million dollar annual savings.</li>
+                        </ul>
+                        <h5 class="text-lg font-semibold text-red-500 mb-2">Cons for Merchants:</h5>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li>Limited Network & Interoperability: The biggest drawback is the restricted network. Merchants can only transact with other businesses that are also clients of the same bank and on the same blockchain network. This limits their reach and is not suitable for a broad, consumer-facing business model.</li>
+                            <li>Less Innovation: Since the network is centrally controlled, it lacks the open, permissionless nature of public blockchains that foster widespread innovation.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Public Stablecoins -->
+                    <div class="bg-white p-8 rounded-xl shadow-md border-2 primary-border">
+                        <h4 class="text-xl font-semibold primary-color mb-4">Public Stablecoins (e.g., USDC)</h4>
+                        <p class="text-gray-600 mb-4">Public stablecoins operate on public, permissionless blockchains like Ethereum and Solana, making them open for anyone to use. They are pegged to a fiat currency and backed by audited reserves, ensuring a 1:1 value.</p>
+                        <h5 class="text-lg font-semibold primary-color mb-2">Pros for Merchants:</h5>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1 mb-4">
+                            <li>Global Accessibility and Reach: Public stablecoins are borderless and can be used by anyone with a compatible digital wallet and an internet connection. This makes them an excellent tool for global expansion and reaching customers who are underserved by traditional banking systems.</li>
+                            <li>Speed and Low Cost: Transactions are processed in minutes, 24/7, with fees that are often just a few dollars or even pennies depending on the blockchain. This is significantly cheaper and faster than traditional wire transfers.</li>
+                            <li>Treasury Modernization: Public stablecoins are ideal for external B2B payments and modernizing how a merchant interacts with its broader ecosystem. Visa, for example, used USDC on public blockchains to settle payments with its merchant acquirers and reduce cross-border settlement times and fees. A merchant can also use them to get paid by on-chain investors or for collateral management.</li>
+                        </ul>
+                        <h5 class="text-lg font-semibold text-red-500 mb-2">Cons for Merchants:</h5>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li>Compliance Responsibility: Merchants are responsible for their own compliance stack, including wallet screening and transaction monitoring. While platforms like Stripe and Bridge handle much of this complexity, the ultimate responsibility can lie with the business.</li>
+                            <li>Security and Fraud Risk: Stablecoin payments are final. If a payment is sent to the wrong address, it's difficult or impossible to recover the funds. Businesses need robust internal controls and secure custody solutions to manage this risk.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Stripe, Bridge, and Privy's Role -->
+                <div class="bg-white p-8 rounded-xl shadow-md border-2 primary-border mt-12">
+                    <h4 class="text-xl font-semibold primary-color mb-4">Stripe, Bridge, and Privy's Role: An Advantageous Middle Ground</h4>
+                    <p class="text-gray-600 mb-4">Stripe, through its acquisitions of Bridge and Privy, positions itself squarely in the public stablecoin ecosystem, providing the essential infrastructure that connects the traditional financial world with the decentralized world of public blockchains.</p>
+
+                    <h5 class="text-lg font-semibold text-gray-800 mb-2">How Stripe, Bridge, and Privy Fit In:</h5>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2 mb-4">
+                        <li>Bridge (Stablecoin Orchestration): Bridge is the core of this strategy, acting as an orchestration layer that handles the complex conversions between fiat and crypto. It allows businesses to on-ramp fiat into stablecoins, or off-ramp stablecoins back to fiat, using a single set of APIs. Bridge also enables businesses to offer their end-users stablecoin-linked financial accounts, which can receive funds on both crypto and fiat rails.</li>
+                        <li>Privy (Crypto Wallet Infrastructure): Privy provides the user-facing layer for this infrastructure. It allows developers to easily embed secure crypto wallets directly into their products, abstracting away the complexity of managing seed phrases and gas fees for end-users. This makes the experience of using stablecoins seamless and familiar, even for those who are not crypto experts.</li>
+                        <li>Stripe's Integrated Platform: Stripe ties these components together, building a full-stack crypto infrastructure play. This platform enables businesses to manage money with stablecoins for a range of use cases, from global payouts to cards, all while handling the regulatory and compliance requirements behind the scenes.</li>
+                    </ul>
+
+                    <h5 class="text-lg font-semibold primary-color mb-2">Stripe's Differentiators and Advantages Over Bank-Issued Stablecoins:</h5>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                        <li>Universal Interoperability and Reach: Unlike bank-issued stablecoins which are confined to a "walled garden" network of a single bank's clients, public stablecoins can be sent to anyone with a compatible wallet on the network, fostering a global and open ecosystem for commerce and payments. This allows merchants to serve a much wider customer base.</li>
+                        <li>24/7, Low-Cost Transactions: Public stablecoin systems operate continuously, transcending traditional banking hours and geographic borders. This enables businesses to process transactions in seconds with fees that are often just a few cents, a significant improvement over the slow, expensive, and intermediary-heavy correspondent banking system that bank-issued stablecoins often rely on.</li>
+                        <li>Flexibility and Innovation: Public blockchains are open and permissionless, encouraging a broader range of developers and partners to build innovative applications and integrations. By building on this ecosystem, Stripe and its partners can offer a greater variety of tools and solutions, such as stablecoin-linked Visa cards that allow for spending at over 150 million merchant locations worldwide.</li>
+                        <li>A "Business of Choice" for Stablecoins: Stripe's platform is not tied to a single stablecoin. It supports multiple stablecoins and allows businesses to choose which ones to use based on their needs. This positions Stripe as a neutral infrastructure provider, allowing businesses the flexibility to build their own stablecoin strategy without being locked into a single issuer's ecosystem.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
         <!-- Stablecoin Opportunity Section -->
         <section id="stablecoin-opportunity" class="py-16 sm:py-24 bg-white rounded-xl shadow-lg my-8">
@@ -622,7 +693,7 @@
     <!-- Footer -->
     <footer class="bg-white rounded-t-xl shadow-lg mt-8">
         <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center text-gray-500">
-            <p>&copy; 2025 Stripe. All rights reserved.</p>
+            <p>&copy; 2025 Stripe + Partner. All rights reserved.</p>
         </div>
     </footer>
 
@@ -677,7 +748,7 @@
                         tagline: 'Global Treasury Management & FX Optimization',
                         challenge: "Managing FX volatility and liquidity across operations in emerging markets with unsophisticated FX infrastructure and local currency controls.",
                         solution: "Partnered with Bridge to use stablecoin payments for faster intracompany transfers and treasury management.",
-                        outcomes: [
+                                                outcomes: [
                             "Cut settlement time from 2-3 days to under 90 minutes.",
                             "Minimized FX exposure & reliance on local currency reserves with just-in-time stablecoin transfers.",
                             "Enhanced liquidity to support expansion into Nigeria, Malawi, Rwanda, Argentina, Brazil, and the Dominican Republic."

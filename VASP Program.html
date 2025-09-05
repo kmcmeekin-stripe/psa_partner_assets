@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VASP Program: Strategic Canvas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA; /* A very light grey for the page background */
+        }
+        .core-text { color: #7A73FF; }
+        .core-bg { background-color: #7A73FF; }
+        .secondary-bg { background-color: #F1F3F5; } /* Lighter than D0D7DE for better contrast */
+        .secondary-text { color: #495057; }
+        .secondary-border { border-color: #D0D7DE; }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 md:p-10">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold core-text mb-2">The VASP Program</h1>
+            <h2 class="text-xl md:text-2xl font-semibold text-gray-700 mb-4">Our Path to a $100M Partner Ecosystem</h2>
+            <p class="max-w-4xl mx-auto text-base md:text-lg secondary-text">
+                A strategic framework to drive partner profitability by creating new recurring revenue streams for partners who build and validate their unique IP with Stripe.
+            </p>
+        </div>
+
+        <!-- Section 1: The Universal Gateway -->
+        <div class="card p-6 md:p-8 mb-10 border-t-4 border-[#7A73FF]">
+            <div class="flex flex-col md:flex-row items-center gap-6">
+                <div class="flex-shrink-0">
+                     <svg class="h-20 w-20 core-text" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 00-9 0v3.75M3.75 21.75h16.5a1.5 1.5 0 001.5-1.5v-6a1.5 1.5 0 00-1.5-1.5H3.75a1.5 1.5 0 00-1.5 1.5v6a1.5 1.5 0 001.5 1.5z" />
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">The Universal Gateway: Validating Partner IP & Mitigating Risk</h3>
+                    <p class="secondary-text mb-4">
+                        We recognize asking partners to build unique IP requires investment. Our solutions framework de-risks this journey by helping them define their IP, find an audience, and offset costs. Access to recurring revenue is gated by this mandatory validation process.
+                    </p>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div class="secondary-bg p-4 rounded-lg">
+                            <p class="font-semibold text-gray-700">Partner Challenge:</p>
+                            <p class="text-sm secondary-text">Defining unique IP and its target audience; significant upfront investment.</p>
+                        </div>
+                        <div class="bg-purple-100 p-4 rounded-lg">
+                            <p class="font-semibold core-text">Our Solution:</p>
+                            <p class="text-sm secondary-text">The "Co-Create" stage with an anchor customer and the "Fund" stage using programs like the EGF.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: The Two Qualified Tracks -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+
+            <!-- WALK PHASE -->
+            <div class="card flex flex-col">
+                <div class="p-6 md:p-8 flex-grow">
+                    <span class="inline-block core-bg text-white px-3 py-1 text-sm font-semibold rounded-full mb-4">"WALK" PHASE</span>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Value-Added Product Reseller</h3>
+                    <p class="font-medium text-gray-500 mb-4">Archetype: <span class="font-bold text-gray-600">Piano.io</span></p>
+                    <p class="secondary-text mb-4">
+                        Partners with a scalable, multi-tenant software platform where Stripe is an embedded component. They have built their own product on top of Stripe infrastructure.
+                    </p>
+                    <ul class="space-y-3 secondary-text list-inside">
+                        <li class="flex items-start"><span class="core-text mr-2">✔</span> Acts as the Seller of Record, owning the customer relationship.</li>
+                        <li class="flex items-start"><span class="core-text mr-2">✔</span> Bundles Stripe features into their own SaaS pricing.</li>
+                        <li class="flex items-start"><span class="core-text mr-2">✔</span> Manages the flow of funds to collect their margin.</li>
+                    </ul>
+                </div>
+                <div class="secondary-bg px-6 py-4 rounded-b-lg mt-auto">
+                    <p class="font-semibold text-gray-700">Commercial Model: <span class="core-text">Buy-Rate Model</span></p>
+                </div>
+            </div>
+
+            <!-- RUN PHASE -->
+            <div class="card flex flex-col">
+                <div class="p-6 md:p-8 flex-grow">
+                     <span class="inline-block core-bg text-white px-3 py-1 text-sm font-semibold rounded-full mb-4">"RUN" PHASE</span>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Managed Service Provider</h3>
+                    <p class="font-medium text-gray-500 mb-4">Archetype: <span class="font-bold text-gray-600">Accenture</span></p>
+                     <p class="secondary-text mb-4">
+                        Partners who deliver a complete solution by combining their unique IP (e.g., accelerators, platforms) with a suite of high-value consulting services. They sell their expertise and a long-term managed service, not just a software license.
+                    </p>
+
+                    <div class="secondary-bg p-4 rounded-lg mb-6">
+                        <p class="font-semibold text-gray-800">Key Offerings (IP + Services):</p>
+                        <ul class="mt-2 space-y-2 text-sm secondary-text">
+                            <li class="flex items-start"><span class="core-text font-bold mr-2 text-base leading-5">&#8226;</span><span><strong>Platform/IP:</strong> Unique, value-added software like the 'Reach' platform.</span></li>
+                            <li class="flex items-start"><span class="core-text font-bold mr-2 text-base leading-5">&#8226;</span><span><strong>Consulting:</strong> Pricing & packaging strategy.</span></li>
+                            <li class="flex items-start"><span class="core-text font-bold mr-2 text-base leading-5">&#8226;</span><span><strong>Implementation:</strong> Token migration and end-to-end setup.</span></li>
+                            <li class="flex items-start"><span class="core-text font-bold mr-2 text-base leading-5">&#8226;</span><span><strong>Integration:</strong> Connecting Stripe to 3rd party systems like ERPs.</span></li>
+                        </ul>
+                    </div>
+
+                    <ul class="space-y-3 secondary-text list-inside mb-6">
+                        <li class="flex items-start"><span class="core-text mr-2">✔</span> Acts as an operator; end-user has direct Stripe relationship.</li>
+                        <li class="flex items-start"><span class="core-text mr-2">✔</span> Supports custom, negotiated enterprise pricing.</li>
+                        <li class="flex items-start"><span class="core-text mr-2">✔</span> Delivers complex projects & long-term managed services.</li>
+                    </ul>
+
+                    <!-- Ideal Candidate Example -->
+                    <div class="bg-purple-50 border-l-4 border-[#7A73FF] p-4 rounded-r-lg">
+                        <h4 class="font-bold text-lg text-gray-800">Ideal Candidate: Accenture's "Reach" Platform</h4>
+                        <p class="text-sm secondary-text mt-2">
+                           <strong>The Partner IP:</strong> A comprehensive digital experience solution helping public sector organizations modernize services. Reach provides a unified portal for citizens, integrating with complex legacy government systems.
+                           <br/><br/>
+                           <strong>How it Fits VASP:</strong> Accenture onboards government agencies, offering Stripe Billing *plus* the extensive value of the Reach platform and its associated implementation services. For this, they would earn a recurring revenue share, rewarding them for the long-term value they create.
+                        </p>
+                    </div>
+                </div>
+                <div class="secondary-bg px-6 py-4 rounded-b-lg mt-auto">
+                    <p class="font-semibold text-gray-700">Commercial Model: <span class="core-text">Services-Led Revshare Model</span> <span class="text-sm text-gray-500">(To be built)</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Not a Fit -->
+        <div class="card p-6 md:p-8 bg-gray-800 text-white border-t-4 border-red-500">
+             <div class="flex flex-col md:flex-row items-center gap-6">
+                <div class="flex-shrink-0">
+                    <svg class="h-16 w-16 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-2">What Does NOT Qualify for the VASP Program</h3>
+                    <p class="text-gray-300 mb-4">
+                        The program is not designed for partners who simply resell standard Stripe products without significant, unique value-add.
+                    </p>
+                     <div class="bg-gray-700 p-4 rounded-lg">
+                         <p class="font-semibold text-red-400">Example: Simple Reselling of Stripe Billing</p>
+                         <ul class="text-sm text-gray-300 mt-2 space-y-1 list-disc list-inside">
+                            <li>Lacks unique partner IP or software that helps the end-user grow.</li>
+                            <li>No incentive for customers to give up margin vs. going direct to Stripe.</li>
+                            <li>Creates channel conflict and risks partners undercutting our pricing.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Initial Candidates for VASP Program -->
+        <div class="mt-12">
+            <div class="text-center mb-10">
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">Initial Candidates for VASP Program</h3>
+                <p class="max-w-3xl mx-auto secondary-text">
+                    A preliminary analysis of our current partner solutions portfolio reveals a healthy pipeline of immediate candidates for both tracks.
+                </p>
+            </div>
+
+            <!-- "Walk" Phase Examples -->
+            <div class="mb-12">
+                <h4 class="text-2xl font-bold text-gray-700 mb-6 text-center">"Walk" Phase Candidates: Value-Added Product Resellers</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="card p-6 flex flex-col">
+                        <h5 class="text-lg font-bold text-gray-800 mb-2">Nimble (Okya)</h5>
+                        <p class="text-sm secondary-text">A vertical SaaS platform for Quick Service Restaurants (QSRs) bundling POS, kitchen displays, and payments.</p>
+                    </div>
+                    <div class="card p-6 flex flex-col">
+                        <h5 class="text-lg font-bold text-gray-800 mb-2">Turkois (Allday)</h5>
+                        <p class="text-sm secondary-text">A SaaS ordering platform for multi-location retailers and restaurants with Stripe as the integrated payments engine.</p>
+                    </div>
+                    <div class="card p-6 flex flex-col">
+                        <h5 class="text-lg font-bold text-gray-800 mb-2">Echobind (Kindkiosk)</h5>
+                        <p class="text-sm secondary-text">A targeted, productized software solution and kiosk for the non-profit vertical, fitting the reseller model.</p>
+                    </div>
+                    <div class="card p-6 flex flex-col">
+                        <h5 class="text-lg font-bold text-gray-800 mb-2">Hiveway (NectarPay)</h5>
+                        <p class="text-sm secondary-text">A "Plug-and-Play POS" solution explicitly positioned as a productized, all-in-one payment platform.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- "Run" Phase Examples -->
+            <div>
+                <h4 class="text-2xl font-bold text-gray-700 mb-6 text-center">"Run" Phase Candidates: Managed Service Providers</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card p-6 flex flex-col">
+                        <h5 class="text-lg font-bold text-gray-800 mb-2">Insight/Amdaris</h5>
+                        <p class="text-sm secondary-text">A fixed-price, 5-day Stripe AI workshop that aims to convert into a long-term, recurring Managed Service.</p>
+                    </div>
+                    <div class="card p-6 flex flex-col">
+                        <h5 class="text-lg font-bold text-gray-800 mb-2">Orium</h5>
+                        <p class="text-sm secondary-text">Uses its Commercetools accelerator IP to deliver complex, bespoke implementation projects with services-based revenue.</p>
+                    </div>
+                    <div class="card p-6 flex flex-col">
+                        <h5 class="text-lg font-bold text-gray-800 mb-2">Ciklum</h5>
+                        <p class="text-sm secondary-text">A pure diagnostic and implementation consulting service where customers are buying expertise and time.</p>
+                    </div>
+                    <div class="card p-6 flex flex-col">
+                        <h5 class="text-lg font-bold text-gray-800 mb-2">Clarasys / Ravus</h5>
+                        <p class="text-sm secondary-text">Their "product" is their team's expertise in executing complex technical migrations, like moving from Zuora.</p>
+                    </div>
+                    <div class="card p-6 flex flex-col lg:col-start-2">
+                        <h5 class="text-lg font-bold text-gray-800 mb-2">Thoughtworks</h5>
+                        <p class="text-sm secondary-text">A pre-sales, strategic consulting engagement (Value Modeling) to build a business case, positioning them as a service provider.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

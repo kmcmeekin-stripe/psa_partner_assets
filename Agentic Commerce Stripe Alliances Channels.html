@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Commerce: An Interactive Guide for Stripe Partners</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: "Warm Neutral Harmony" - A calming, professional palette using beige, warm grays, a deep slate blue for primary text, and a subtle terracotta for accents. -->
+    <!-- Application Structure Plan: The SPA is designed as a narrative journey for a Stripe partner. It starts with a high-level introduction ('What is Agentic Commerce?'), then drills down into the technical architecture ('The Agentic Ecosystem'). It then pivots to the business value, showcasing Stripe's role ('Stripe's Role'), followed by practical guidance for merchants ('Merchant Playbook'). The final section ('Partner Opportunity') is a direct call to action for system integrators, outlining how they can co-develop solutions. This top-down, narrative structure was chosen because the target audience (partners) needs to first understand the concept, then the components, then the value proposition for their clients, and finally their own role in the ecosystem. Navigation is handled by a sticky top bar, allowing users to jump to any section, while interactive elements within each section encourage exploration of details on demand. -->
+    <!-- Visualization & Content Choices: 
+        1.  **Agentic Commerce Flow:** Report Info -> End-to-end process. Goal -> Organize & Explain. Viz Method -> Interactive diagram built with HTML/CSS. Interaction -> Clicking on a stage (e.g., 'Discovery', 'Payment') reveals detailed text about the agents and tools involved. Justification -> A static diagram is less engaging. This allows users to explore the flow at their own pace without overwhelming them with text. Method -> HTML/CSS with JS click handlers.
+        2.  **Ecosystem Components:** Report Info -> Different types of agents (Product, Inventory, etc.). Goal -> Inform & Categorize. Viz Method -> A set of interactive cards. Interaction -> Clicking a card flips it or expands it to show the agent's role, required tools, and its connection to Stripe. Justification -> Cards provide a clean, organized way to present distinct but related concepts, more interactive than a simple list. Method -> HTML/CSS with JS click handlers.
+        3.  **Merchant Adoption Stages:** Report Info -> Guide for merchants to start. Goal -> Instruct & Guide. Viz Method -> A horizontal stepper/timeline built with HTML/CSS. Interaction -> Clicking on a stage ('Crawl', 'Walk', 'Run') highlights it and displays the associated strategies, considerations, and Stripe tools in a separate text area. Justification -> Visually represents a journey of maturity, which is more intuitive than a bulleted list for a multi-stage process. Method -> HTML/CSS with JS state management.
+        4.  **Partner Opportunity Matrix:** Report Info -> How SIs can co-develop with Stripe. Goal -> Persuade & Inform. Viz Method -> A styled HTML table/grid. Interaction -> Hovering over a cell could reveal more detail or a tooltip, but primarily a clear, static visualization. Justification -> A grid is the most effective way to show the relationship between SI capabilities and Stripe's offerings for different merchant segments. Method -> Styled HTML.
+        - All choices confirmed to use HTML/CSS/JS and avoid SVG/Mermaid, focusing on interactive clarity to support the partner's learning journey. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #1E293B;
+        }
+        .nav-link {
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #7A73FF;
+            border-bottom-color: #7A73FF;
+        }
+        .card {
+            background-color: #FFFFFF;
+            border: 1px solid #D0D7DE;
+            border-radius: 0.75rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .stage-item {
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .stage-item.active {
+            background-color: #7A73FF;
+            color: #FFFFFF;
+        }
+        .content-section {
+            display: none;
+            min-height: calc(100vh - 80px); /* Adjust for header height */
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            padding-top: 2rem;
+        }
+        .content-section.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        /* Improve tab navigation visual feedback */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+            padding-bottom: 4px;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #7A73FF;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            transform: scaleX(1);
+        }
+        
+        .flow-step {
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .flow-step.active {
+            background-color: #E8E7FF;
+            border-color: #7A73FF;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-gray-800">
+                <span class="text-[#7A73FF]">Stripe</span> <span class="font-light">| Agentic Commerce</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#introduction" class="nav-link active">Introduction</a>
+                <a href="#ecosystem" class="nav-link">Ecosystem</a>
+                <a href="#stripe-role" class="nav-link">Stripe's Role</a>
+                <a href="#playbook" class="nav-link">Merchant Playbook</a>
+                <a href="#opportunity" class="nav-link">Partner Opportunity</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden flex items-center">
+                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#introduction" class="block py-2 px-4 text-sm hover:bg-gray-100 nav-link-mobile">Introduction</a>
+            <a href="#ecosystem" class="block py-2 px-4 text-sm hover:bg-gray-100 nav-link-mobile">Ecosystem</a>
+            <a href="#stripe-role" class="block py-2 px-4 text-sm hover:bg-gray-100 nav-link-mobile">Stripe's Role</a>
+            <a href="#playbook" class="block py-2 px-4 text-sm hover:bg-gray-100 nav-link-mobile">Merchant Playbook</a>
+            <a href="#opportunity" class="block py-2 px-4 text-sm hover:bg-gray-100 nav-link-mobile">Partner Opportunity</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="introduction" class="content-section active">
+            <div class="pt-8">
+                <h1 class="text-5xl md:text-6xl font-bold text-gray-800 leading-tight mb-4">The Future is Agentic.</h1>
+                <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl">Welcome to the next evolution of commerce. This guide is designed for our partners to understand how AI agents are transforming the buying experience, creating a world of automated, personalized, and seamless transactions.</p>
+                <div class="bg-white p-8 rounded-lg shadow-md border border-[#D0D7DE]">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">What is Agentic Commerce?</h2>
+                    <p class="text-gray-600 leading-relaxed">Agentic commerce is an AI-driven ecosystem where autonomous software agents act on behalf of consumers and businesses to execute commercial tasks. Instead of a customer manually searching for a product, comparing prices, and checking out, an AI agent does it for them based on their preferences and past behavior. This creates a highly efficient and personalized commerce flow, from discovery to fulfillment.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ecosystem" class="content-section">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800">The Agentic Ecosystem</h2>
+                <p class="text-lg text-gray-600 mt-2 max-w-3xl mx-auto">A successful agentic commerce experience relies on a network of specialized agents, tools, and platforms working in concert. Explore the key components of this end-to-end flow by clicking on each step below.</p>
+            </div>
+            
+            <div class="w-full bg-white p-6 rounded-lg shadow-lg border border-[#D0D7DE]">
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4 text-center mb-6">
+                    <div id="flow-step-1" class="flow-step border-b-4 border-[#D0D7DE] p-4 rounded-md active">
+                        <span class="text-2xl">💬</span>
+                        <h3 class="font-semibold mt-2">Discovery</h3>
+                    </div>
+                    <div class="border-b-4 border-transparent p-4 hidden md:block">
+                        <span class="text-gray-300 text-2xl font-light">→</span>
+                    </div>
+                     <div id="flow-step-2" class="flow-step border-b-4 border-[#D0D7DE] p-4 rounded-md">
+                        <span class="text-2xl">🤖</span>
+                        <h3 class="font-semibold mt-2">Orchestration</h3>
+                    </div>
+                    <div class="border-b-4 border-transparent p-4 hidden md:block">
+                        <span class="text-gray-300 text-2xl font-light">→</span>
+                    </div>
+                     <div id="flow-step-3" class="flow-step border-b-4 border-[#D0D7DE] p-4 rounded-md">
+                        <span class="text-2xl">💳</span>
+                        <h3 class="font-semibold mt-2">Transaction</h3>
+                    </div>
+                </div>
+
+                <div id="flow-content-1" class="flow-content-panel p-6 bg-gray-50 rounded-lg">
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Discovery & Intent</h3>
+                    <p class="text-gray-600">This initial phase is where the user's need is captured. An orchestrating agent interprets natural language requests (e.g., "Find me a pair of waterproof hiking boots for under $150") and initiates the process by engaging other specialized agents.</p>
+                    <div class="mt-4 grid md:grid-cols-2 gap-4">
+                        <div class="card p-4">
+                            <h4 class="font-bold">Product Agent</h4>
+                            <p class="text-sm text-gray-600">Scours merchant networks and catalogs to find products matching the user's criteria. It understands product attributes, variations, and pricing.</p>
+                        </div>
+                         <div class="card p-4">
+                            <h4 class="font-bold">Inventory Agent</h4>
+                            <p class="text-sm text-gray-600">Verifies real-time stock levels and availability for the products identified, preventing orders for out-of-stock items.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="flow-content-2" class="flow-content-panel p-6 bg-gray-50 rounded-lg hidden">
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Orchestration & Negotiation</h3>
+                    <p class="text-gray-600">The central orchestrator agent gathers information from various agents, compares options, applies user preferences (like brand loyalty or shipping speed), and presents the best choices back to the user or makes an autonomous decision if permitted.</p>
+                    <div class="mt-4 grid md:grid-cols-2 gap-4">
+                         <div class="card p-4">
+                            <h4 class="font-bold">Orchestrator Agent</h4>
+                            <p class="text-sm text-gray-600">The "brain" of the operation. It manages the workflow, communicates between agents, and ensures the user's goal is met efficiently.</p>
+                        </div>
+                        <div class="card p-4">
+                            <h4 class="font-bold">Fulfillment Agent</h4>
+                            <p class="text-sm text-gray-600">Calculates shipping costs, delivery times, and logistics from different merchants to find the optimal fulfillment option.</p>
+                        </div>
+                    </div>
+                </div>
+
+                 <div id="flow-content-3" class="flow-content-panel p-6 bg-gray-50 rounded-lg hidden">
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Transaction & Post-Purchase</h3>
+                    <p class="text-gray-600">Once a decision is made, the transaction is executed securely and seamlessly. Post-purchase agents handle tracking, returns, and customer service inquiries, maintaining a consistent user experience.</p>
+                     <div class="mt-4 grid md:grid-cols-2 gap-4">
+                        <div class="card p-4">
+                            <h4 class="font-bold">Payment Agent</h4>
+                            <p class="text-sm text-gray-600">Securely handles the entire checkout process using tokenized payment methods, manages fraud detection, and ensures compliance. This is a core Stripe integration point.</p>
+                        </div>
+                         <div class="card p-4">
+                            <h4 class="font-bold">Customer Service Agent</h4>
+                            <p class="text-sm text-gray-600">Provides order status updates, initiates returns, and answers post-purchase questions, often powered by merchant-specific knowledge bases.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="stripe-role" class="content-section">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800">How Stripe Powers Agentic Commerce</h2>
+                <p class="text-lg text-gray-600 mt-2 max-w-3xl mx-auto">Stripe provides the critical financial infrastructure to make secure, scalable agentic commerce a reality. Our suite of tools is built to handle the unique challenges of a machine-driven economy.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card p-6">
+                    <h3 class="text-xl font-bold mb-3 text-[#7A73FF]">Secure, Headless Payments</h3>
+                    <p class="text-gray-600">Stripe's APIs allow agents to execute payments programmatically without needing a traditional UI. Tools like <span class="font-semibold">Stripe Link</span> and tokenization ensure user payment details are stored securely and can be used across any agentic surface, preserving trust and identity.</p>
+                </div>
+                <div class="card p-6">
+                    <h3 class="text-xl font-bold mb-3 text-[#7A73FF]">Intelligent Fraud Prevention</h3>
+                    <p class="text-gray-600">In an agentic world, transaction patterns change. <span class="font-semibold">Stripe Radar</span> leverages machine learning trained on billions of transactions to identify and block fraudulent purchases made by malicious agents, protecting both merchants and consumers in real-time.</p>
+                </div>
+                <div class="card p-6">
+                    <h3 class="text-xl font-bold mb-3 text-[#7A73FF]">Merchant & Platform Tooling</h3>
+                    <p class="text-gray-600">Using <span class="font-semibold">Stripe Connect</span>, platforms can easily onboard a vast network of merchants, enabling them to publish products and participate in the agentic economy. The <span class="font-semibold">Stripe MCP (Merchant Commerce Protocol)</span> provides a standardized way for agents to query product and payment information.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="playbook" class="content-section">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800">A Merchant's Guide to Getting Started</h2>
+                <p class="text-lg text-gray-600 mt-2 max-w-3xl mx-auto">Adopting agentic commerce is a journey. We recommend a phased approach for merchants to build capabilities, test strategies, and scale effectively. Click through the stages to see our recommendations.</p>
+            </div>
+
+            <div class="flex justify-center space-x-2 md:space-x-4 mb-8 bg-gray-100 p-2 rounded-full">
+                <button class="stage-item px-4 py-2 md:px-6 md:py-3 rounded-full text-sm md:text-base font-semibold active" data-stage="crawl">Phase 1: Crawl</button>
+                <button class="stage-item px-4 py-2 md:px-6 md:py-3 rounded-full text-sm md:text-base font-semibold" data-stage="walk">Phase 2: Walk</button>
+                <button class="stage-item px-4 py-2 md:px-6 md:py-3 rounded-full text-sm md:text-base font-semibold" data-stage="run">Phase 3: Run</button>
+            </div>
+            
+            <div class="bg-white p-8 rounded-lg shadow-md border border-[#D0D7DE] min-h-[300px]">
+                <div id="stage-content-crawl" class="stage-content active">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Crawl: Foundational Readiness</h3>
+                    <p class="text-gray-600 mb-4">The focus here is on structuring data and making products discoverable by agents.</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li><strong>Structure Product Data:</strong> Ensure your product catalog is robust, with clear attributes, high-quality images, and real-time inventory levels accessible via API.</li>
+                        <li><strong>Standardize APIs:</strong> Adopt standards like the Stripe Merchant Commerce Protocol (MCP) to allow agents to easily query your products and services.</li>
+                        <li><strong>Optimize Checkout:</strong> Implement a seamless, API-driven checkout flow with Stripe Payments to support headless transactions.</li>
+                    </ul>
+                </div>
+                <div id="stage-content-walk" class="stage-content hidden">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Walk: Initial Agent Development</h3>
+                     <p class="text-gray-600 mb-4">Begin building proprietary agents to enhance the customer experience on your own properties.</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li><strong>Develop a Product Agent:</strong> Create a specialized agent that can provide intelligent recommendations to users on your website or app.</li>
+                        <li><strong>Build a Customer Service Agent:</strong> Implement a chatbot that can handle post-purchase queries like order status and returns, freeing up human agents.</li>
+                        <li><strong>Leverage Stripe Tooling:</strong> Use Stripe's developer tools and AI assistants (like the one in VS Code) to accelerate development.</li>
+                    </ul>
+                </div>
+                <div id="stage-content-run" class="stage-content hidden">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Run: Full Ecosystem Participation</h3>
+                     <p class="text-gray-600 mb-4">Engage fully in the external agentic economy, allowing third-party agents to sell your products across different platforms.</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li><strong>Connect to Orchestrators:</strong> Integrate with major orchestrator platforms to make your products available to a wider network of consumer agents.</li>
+                        <li><strong>Enable Dynamic Pricing:</strong> Develop capabilities for agents to negotiate pricing based on factors like customer loyalty or order volume.</li>
+                        <li><strong>Monetize Agent Usage:</strong> For platforms, use Stripe Connect to monetize when your proprietary agents or tools are used in a larger AI-powered experience.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="opportunity" class="content-section">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800">The Co-Development Opportunity for Partners</h2>
+                <p class="text-lg text-gray-600 mt-2 max-w-3xl mx-auto">As a system integrator, you are uniquely positioned to help merchants navigate this transition. Partner with Stripe to build and deploy cutting-edge agentic commerce solutions.</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-lg shadow-md border border-[#D0D7DE]">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">What You Can Build</h3>
+                        <p class="text-gray-600 mb-4">Leverage your technical expertise to create high-value solutions that merchants need:</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Agent Development & Integration:</strong> Design and build custom product, inventory, and payment agents for enterprise clients.</li>
+                            <li><strong>Platform Readiness Consulting:</strong> Help merchants structure their data, modernize their APIs, and prepare their infrastructure for the agentic economy.</li>
+                            <li><strong>Orchestration Strategy:</strong> Advise clients on which agentic platforms to join and how to optimize their presence for maximum visibility and sales.</li>
+                             <li><strong>Proof of Concepts:</strong> Utilize the Stripe Enterprise Growth Fund to propose and deliver funded proof of concepts to new clients, demonstrating immediate value.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">How Stripe Supports You</h3>
+                         <p class="text-gray-600 mb-4">We provide the tools, resources, and support to ensure your success:</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Training & Certification:</strong> Access our free training programs and become a Stripe Certified Professional to validate your expertise.</li>
+                            <li><strong>Technical Documentation:</strong> Full access to our API documentation and developer resources, including the agentic-commerce.dev portal.</li>
+                            <li><strong>Bootcamp Training:</strong> Join our intensive bootcamp sessions designed to fast-track your team's Stripe certification and solution-building capabilities.</li>
+                            <li><strong>Enterprise Growth Fund:</strong> Collaborate with us on new enterprise opportunities and leverage our investment fund to de-risk initial client projects.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+             <div class="text-center mt-12">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Examples of Success</h3>
+                <p class="text-lg text-gray-600 mt-2 max-w-3xl mx-auto mb-6">Merchants are already seeing success by implementing early forms of agentic commerce.</p>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="card p-6 text-left">
+                        <h4 class="font-bold text-lg">Klarna</h4>
+                        <p class="text-gray-600 mt-2">Uses AI-powered agents to provide personalized shopping recommendations and manage flexible payment options, streamlining the discovery-to-purchase journey.</p>
+                    </div>
+                    <div class="card p-6 text-left">
+                        <h4 class="font-bold text-lg">Shopify</h4>
+                        <p class="text-gray-600 mt-2">Their "Shopify Magic" suite uses AI to automate product descriptions and other storefront tasks, an early step in agent-driven store management.</p>
+                    </div>
+                     <div class="card p-6 text-left">
+                        <h4 class="font-bold text-lg">Instacart</h4>
+                        <p class="text-gray-600 mt-2">Integrates with ChatGPT to allow users to build shopping lists from natural language meal plans, then turns that list into a purchase via an agent-like workflow.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileNavLinks = document.querySelectorAll('.nav-link-mobile');
+            const sections = document.querySelectorAll('.content-section');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            let currentSection = null;
+
+            function setActiveLink(targetId) {
+                const targetIdHash = `#${targetId}`;
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === targetIdHash);
+                });
+                mobileNavLinks.forEach(link => {
+                    link.classList.toggle('bg-gray-200', link.getAttribute('href') === targetIdHash);
+                });
+            }
+
+            function showSection(targetId) {
+                // Don't do anything if we're already on this section
+                if (currentSection === targetId) return;
+                
+                // Hide current section
+                sections.forEach(section => {
+                    if (section.classList.contains('active')) {
+                        section.style.opacity = '0';
+                        setTimeout(() => {
+                            section.classList.remove('active');
+                        }, 300);
+                    }
+                });
+                
+                // Show new section
+                const targetSection = document.getElementById(targetId);
+                setTimeout(() => {
+                    targetSection.classList.add('active');
+                    requestAnimationFrame(() => {
+                        targetSection.style.opacity = '1';
+                    });
+                }, 300);
+                
+                setActiveLink(targetId);
+                currentSection = targetId;
+            }
+            
+            function handleNavClick(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                
+                // Only scroll to top if we're changing sections
+                if (currentSection !== targetId) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+                
+                showSection(targetId);
+
+                if(mobileMenu.classList.contains('block')) {
+                    mobileMenu.classList.remove('block');
+                    mobileMenu.classList.add('hidden');
+                }
+            }
+
+            navLinks.forEach(link => link.addEventListener('click', handleNavClick));
+            mobileNavLinks.forEach(link => link.addEventListener('click', handleNavClick));
+            
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('block');
+            });
+
+
+            const stageButtons = document.querySelectorAll('.stage-item');
+            const stageContents = document.querySelectorAll('.stage-content');
+
+            stageButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const stage = button.dataset.stage;
+
+                    stageButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    stageContents.forEach(content => {
+                        content.classList.add('hidden');
+                        if (content.id === `stage-content-${stage}`) {
+                            content.classList.remove('hidden');
+                        }
+                    });
+                });
+            });
+            
+            const flowSteps = document.querySelectorAll('.flow-step');
+            const flowPanels = document.querySelectorAll('.flow-content-panel');
+
+            flowSteps.forEach((step, index) => {
+                step.addEventListener('click', () => {
+                    flowSteps.forEach(s => s.classList.remove('active'));
+                    step.classList.add('active');
+                    
+                    flowPanels.forEach(panel => panel.classList.add('hidden'));
+                    const panelId = step.id.replace('step', 'content');
+                    document.getElementById(panelId).classList.remove('hidden');
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
+

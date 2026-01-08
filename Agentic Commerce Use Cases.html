@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Commerce Enablement Guide</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        :root {
+            --core-color: #7A73FF;
+            --secondary-color: #D0D7DE;
+        }
+        .bg-core { background-color: var(--core-color); }
+        .text-core { color: var(--core-color); }
+        .border-core { border-color: var(--core-color); }
+        .border-secondary { border-color: var(--secondary-color); }
+        
+        /* Custom scrollbar for table if needed */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-slate-50 font-sans text-slate-800">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-core">
+                    <i data-lucide="zap" class="text-white w-5 h-5"></i>
+                </div>
+                <h1 class="text-xl font-bold tracking-tight text-slate-900">Agentic Commerce Enablement</h1>
+            </div>
+            <div class="text-sm font-medium px-3 py-1 rounded-full bg-slate-100 text-slate-500 border border-slate-200">
+                Roles & Responsibilities Matrix
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Global Roles Overview -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- Stripe Role -->
+            <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center bg-indigo-600">
+                        <i data-lucide="credit-card" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900">Stripe</h3>
+                </div>
+                <p class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Commerce Infrastructure</p>
+                <p class="text-slate-600 leading-relaxed">Payments, fraud, catalog syndication, and ACP protocol translation.</p>
+            </div>
+
+            <!-- Partner GenAI Role -->
+            <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center bg-purple-600">
+                        <i data-lucide="brain" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900">Partner GenAI</h3>
+                </div>
+                <p class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Enterprise Intelligence</p>
+                <p class="text-slate-600 leading-relaxed">Cognitive layer: LLM tuning, prompt engineering, GEO/AEO, and user experience.</p>
+            </div>
+
+            <!-- Partner Broader Org Role -->
+            <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center bg-slate-600">
+                        <i data-lucide="settings" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900">Partner Broader Org</h3>
+                </div>
+                <p class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Commerce Enablement</p>
+                <p class="text-slate-600 leading-relaxed">Backend plumbing: OMS, ERP, Inventory, API development, and systems integration.</p>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="tab-container">
+                <!-- Tabs will be injected here via JS -->
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="bg-white rounded-2xl border shadow-sm overflow-hidden border-secondary">
+            
+            <!-- Use Case Header -->
+            <div class="p-8 border-b border-slate-100 bg-gradient-to-r from-slate-50 to-white">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div>
+                        <h2 id="uc-title" class="text-2xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                            <!-- Title injected via JS -->
+                        </h2>
+                        <p id="uc-subtitle" class="text-slate-500">
+                            <!-- Subtitle injected via JS -->
+                        </p>
+                    </div>
+                    
+                    <!-- Strategy Brief Card -->
+                    <div class="bg-indigo-50 rounded-lg p-4 border border-indigo-100 max-w-2xl w-full md:w-auto">
+                        <div class="flex gap-2 items-start">
+                            <div class="mt-1 min-w-[20px]">
+                                <i data-lucide="zap" class="w-5 h-5 text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold text-indigo-900 text-sm block mb-1">THE GOAL</span>
+                                <p id="uc-goal" class="text-sm text-indigo-800 leading-relaxed">
+                                    <!-- Goal injected via JS -->
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Responsibility Matrix -->
+            <div class="overflow-x-auto custom-scrollbar">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-50 border-b border-slate-200">
+                            <th class="py-4 px-6 font-semibold text-slate-500 text-xs uppercase tracking-wider w-1/5">Process Step</th>
+                            <th class="py-4 px-6 font-semibold text-indigo-600 text-xs uppercase tracking-wider w-1/4">Stripe Role</th>
+                            <th class="py-4 px-6 font-semibold text-purple-600 text-xs uppercase tracking-wider w-1/4">Partner GenAI Role</th>
+                            <th class="py-4 px-6 font-semibold text-slate-600 text-xs uppercase tracking-wider w-1/4">Partner Broader Org</th>
+                        </tr>
+                    </thead>
+                    <tbody id="matrix-body" class="divide-y divide-slate-100">
+                        <!-- Table rows injected via JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Strategic Summary Footer -->
+            <div class="bg-slate-900 text-white p-8">
+                <h3 class="font-bold text-lg mb-6 flex items-center gap-2">
+                    <i data-lucide="box" class="w-5 h-5 text-core"></i>
+                    Detailed Engagement Model
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="space-y-2">
+                        <span class="text-xs font-bold tracking-wider text-core uppercase">Stripe's Play</span>
+                        <p id="footer-stripe" class="text-sm text-slate-300 leading-relaxed">
+                            <!-- Content injected via JS -->
+                        </p>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="text-xs font-bold tracking-wider text-purple-400 uppercase">Partner GenAI Play</span>
+                        <p id="footer-genai" class="text-sm text-slate-300 leading-relaxed">
+                            <!-- Content injected via JS -->
+                        </p>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="text-xs font-bold tracking-wider text-slate-400 uppercase">Broader Org Play</span>
+                        <p id="footer-broader" class="text-sm text-slate-300 leading-relaxed">
+                            <!-- Content injected via JS -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Data Structure
+        const useCases = {
+            expansion: {
+                id: 'expansion',
+                title: "Expansion into New Agentic Channels",
+                subtitle: "Via Agentic Commerce Suite",
+                icon: "globe",
+                summary: {
+                    goal: "The merchant wants to sell on Microsoft Copilot, Gemini, and others immediately without 6 months of dev work.",
+                    stripeRole: "Universal Adapter. Ingests product feed once and syndicates it everywhere. Hosts the ACS.",
+                    genAiRole: "GEO (Generative Engine Optimization). Optimizes metadata so LLMs see products as the 'best answer'.",
+                    broaderRole: "The Last Mile. Ensures orders flow to OMS and handles initial catalog data dump."
+                },
+                steps: [
+                    {
+                        step: "Product Discovery & Feed",
+                        stripe: "Syndication: Ingests merchant catalog; translates and syncs to agents (Copilot, etc.).",
+                        genAi: "GEO/AEO Strategy: Optimizes product data SEO for conversational results.",
+                        broader: "Data Prep: Exports/formats master product catalog from PIM/ERP; manages data hygiene."
+                    },
+                    {
+                        step: "Agent Integration",
+                        stripe: "Connectivity: Maintains live connections/contracts; insulates merchant from API changes.",
+                        genAi: "Channel Strategy: Advises on which agents align with brand voice.",
+                        broader: "N/A (Handled by Stripe ACS)"
+                    },
+                    {
+                        step: "Cart & Checkout Logic",
+                        stripe: "Hosting: Manages cart session, tax calculation, and shipping logic (Option 1).",
+                        genAi: "N/A",
+                        broader: "Backend Sync: If using Storefront API (Option 2), builds ACP-compliant endpoints."
+                    },
+                    {
+                        step: "Risk & Fraud",
+                        stripe: "Intelligence: Agent-specific fraud scoring (Radar) and liability protection.",
+                        genAi: "N/A",
+                        broader: "Configuration: Configures risk thresholds and manual review workflows."
+                    },
+                    {
+                        step: "Payment Processing",
+                        stripe: "Orchestration: Processes transactions using Shared Payment Tokens (SPTs).",
+                        genAi: "N/A",
+                        broader: "Reconciliation: Integrates Stripe payout data into ledger/ERP."
+                    }
+                ]
+            },
+            chatgpt: {
+                id: 'chatgpt',
+                title: "Building a ChatGPT App",
+                subtitle: "The \"Instacart\" Play",
+                icon: "message-square",
+                summary: {
+                    goal: "Merchant wants a dedicated 'App' inside ChatGPT for loyal customers (e.g., 'Build a cart for meal prep').",
+                    stripeRole: "Pure Payments Plumbing. Provides Shared Payment Token (SPT) so users pay inside chat securely.",
+                    genAiRole: "Product Build. Owns OpenAI Apps SDK work, 'skills' definitions, and conversation design.",
+                    broaderRole: "System Integration. Connects the 'Brain' (GenAI) to the 'Body' (Inventory, Pricing, Logistics)."
+                },
+                steps: [
+                    {
+                        step: "App Build & UX",
+                        stripe: "N/A",
+                        genAi: "App Development: Builds app using OpenAI SDK; designs flows and capabilities.",
+                        broader: "N/A"
+                    },
+                    {
+                        step: "Product Search & Intelligence",
+                        stripe: "N/A",
+                        genAi: "Enterprise Intelligence: Connects App to knowledge base (RAG) for recommendations.",
+                        broader: "API Exposure: Exposes product/inventory APIs for the RAG system."
+                    },
+                    {
+                        step: "Cart Management",
+                        stripe: "N/A",
+                        genAi: "UI Layer: Renders cart and item selection within chat interface.",
+                        broader: "State Management: Connects chat UI to OMS to reserve inventory/validate pricing."
+                    },
+                    {
+                        step: "Payments",
+                        stripe: "Infrastructure: Embedded Checkout APIs (SPTs) or Redirect flows.",
+                        genAi: "N/A",
+                        broader: "Integration: Implements Stripe PaymentIntent/SPT logic securely."
+                    },
+                    {
+                        step: "Fulfillment",
+                        stripe: "N/A",
+                        genAi: "N/A",
+                        broader: "Order Injection: Injects completed order into 3PL/WMS."
+                    }
+                ]
+            },
+            onsite: {
+                id: 'onsite',
+                title: "Direct Onsite Agentic Experience",
+                subtitle: "The \"Concierge\" Play",
+                icon: "store",
+                summary: {
+                    goal: "Replace static search bar with a conversational stylist/expert on brand.com.",
+                    stripeRole: "Friction Reduction. Uses Link/MCP to authenticate user immediately for tailored conversation.",
+                    genAiRole: "RAG & Fine-Tuning. Builds vector DB to let LLM 'know' the catalog deeply.",
+                    broaderRole: "Headless Commerce. Exposes checkout APIs so bot can create carts and execute orders.",
+                },
+                steps: [
+                    {
+                        step: "Agent Implementation",
+                        stripe: "N/A",
+                        genAi: "Bot Construction: Builds onsite agent (LLMs); handles context/intent.",
+                        broader: "Hosting: Manages cloud infrastructure (AWS/Azure) for agent backend."
+                    },
+                    {
+                        step: "Commerce Context",
+                        stripe: "N/A",
+                        genAi: "Personalization: Tunes model for recommendations based on user input.",
+                        broader: "Headless Integration: Integrates agent with Headless APIs for live pricing."
+                    },
+                    {
+                        step: "Checkout & Auth",
+                        stripe: "Authentication: Stripe Link or MCP tools for instant, authenticated flows.",
+                        genAi: "Experience Design: Designs the 'handover' from chat to checkout UI.",
+                        broader: "Transaction: Executes checkout using existing payment stack."
+                    },
+                    {
+                        step: "Post-Purchase Support",
+                        stripe: "N/A",
+                        genAi: "Support Automation: Tuning agent to handle 'Where is my order?' queries.",
+                        broader: "Data Fetching: Connects agent to ERP/Tracking systems."
+                    }
+                ]
+            }
+        };
+
+        let activeTab = 'expansion';
+
+        // Render Functions
+        function renderTabs() {
+            const container = document.getElementById('tab-container');
+            container.innerHTML = Object.values(useCases).map(tab => {
+                const isActive = activeTab === tab.id;
+                const activeBorder = isActive ? 'border-core shadow-md scale-[1.02]' : 'border-slate-200 hover:border-slate-300 hover:bg-slate-50';
+                const iconColor = isActive ? 'text-white' : 'text-slate-400 bg-slate-100';
+                const iconBg = isActive ? 'bg-core' : '';
+                const textColor = isActive ? 'text-slate-900' : 'text-slate-600';
+
+                return `
+                    <button
+                        onclick="switchTab('${tab.id}')"
+                        class="flex items-center gap-4 p-4 rounded-xl border-2 text-left transition-all duration-200 bg-white ${activeBorder}"
+                    >
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center transition-colors ${iconColor} ${iconBg}">
+                            <i data-lucide="${tab.icon}"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold ${textColor}">${tab.title}</h3>
+                            <p class="text-xs text-slate-500 mt-1">${tab.subtitle}</p>
+                        </div>
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function renderContent() {
+            const data = useCases[activeTab];
+
+            // Header Info
+            document.getElementById('uc-title').innerText = data.title;
+            document.getElementById('uc-subtitle').innerText = data.subtitle;
+            document.getElementById('uc-goal').innerText = data.summary.goal;
+
+            // Matrix Table
+            const tbody = document.getElementById('matrix-body');
+            tbody.innerHTML = data.steps.map(row => `
+                <tr class="hover:bg-slate-50 transition-colors group">
+                    <td class="py-6 px-6 align-top">
+                        <span class="font-bold text-slate-800 block mb-1 group-hover:text-core transition-colors">${row.step}</span>
+                    </td>
+                    <td class="py-6 px-6 align-top text-sm leading-relaxed text-slate-600">
+                        ${renderCellContent(row.stripe, 'bg-indigo-200')}
+                    </td>
+                    <td class="py-6 px-6 align-top text-sm leading-relaxed text-slate-600">
+                        ${renderCellContent(row.genAi, 'bg-purple-200')}
+                    </td>
+                    <td class="py-6 px-6 align-top text-sm leading-relaxed text-slate-600">
+                        ${renderCellContent(row.broader, 'bg-slate-300')}
+                    </td>
+                </tr>
+            `).join('');
+
+            // Footer Info
+            document.getElementById('footer-stripe').innerText = data.summary.stripeRole;
+            document.getElementById('footer-genai').innerText = data.summary.genAiRole;
+            document.getElementById('footer-broader').innerText = data.summary.broaderRole;
+
+            // Refresh Icons
+            lucide.createIcons();
+        }
+
+        function renderCellContent(text, indicatorColor) {
+            if (text === "N/A") return '<span class="text-slate-300 italic">--</span>';
+            return `
+                <div class="flex gap-2">
+                    <div class="mt-1 min-w-[4px] w-1 h-auto rounded-full ${indicatorColor}"></div>
+                    <span>${text}</span>
+                </div>
+            `;
+        }
+
+        function switchTab(tabId) {
+            activeTab = tabId;
+            renderTabs();
+            renderContent();
+        }
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            renderTabs();
+            renderContent();
+        });
+
+    </script>
+</body>
+</html>
